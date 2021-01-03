@@ -100,22 +100,60 @@ public class Bodega implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((ciudad == null) ? 0 : ciudad.hashCode());
+		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((productos == null) ? 0 : productos.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
-		    return true;
+			return true;
 		if (obj == null)
-		    return false;
+			return false;
 		if (getClass() != obj.getClass())
-		    return false;
+			return false;
 		Bodega other = (Bodega) obj;
+		if (ciudad == null) {
+			if (other.ciudad != null)
+				return false;
+		} else if (!ciudad.equals(other.ciudad))
+			return false;
+		if (direccion == null) {
+			if (other.direccion != null)
+				return false;
+		} else if (!direccion.equals(other.direccion))
+			return false;
 		if (id != other.id)
-		    return false;
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (productos == null) {
+			if (other.productos != null)
+				return false;
+		} else if (!productos.equals(other.productos))
+			return false;
 		return true;
+	}
+
+	public List<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
+
+	@Override
+	public String toString() {
+		return "Bodega [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", ciudad=" + ciudad
+				+ ", productos=" + productos + "]";
 	}
    
 }
