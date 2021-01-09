@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -31,6 +32,7 @@ public class FacturaCabecera implements Serializable {
 	private float iva;
 	private char estado;
 	@ManyToOne
+	@JoinColumn
 	private Persona persona;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaCabecera")
