@@ -1,6 +1,7 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Bodega implements Serializable {
 	@JoinColumn
 	private Ciudad ciudad;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "bodegas")
 	@JoinColumn
 	private List<Producto> productos;
 	
@@ -40,6 +41,7 @@ public class Bodega implements Serializable {
 		this.setNombre(nombre);
 		this.setDireccion(Direccion);
 		this.setCiudad(ciudad);
+		productos = new ArrayList<Producto>();
 	}
 
 	public Bodega() {
@@ -93,6 +95,8 @@ public class Bodega implements Serializable {
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	
 
 
 
@@ -148,6 +152,10 @@ public class Bodega implements Serializable {
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
+	}
+	
+	public void addProductos(Producto productos) {
+		this.productos.add(productos);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class Producto implements Serializable {
 	@JoinColumn
 	private Categoria categoria;
 	
-	@ManyToMany(mappedBy = "productos")
+	@ManyToMany
 	@JoinColumn
 	private List<Bodega> bodegas;
 	
@@ -41,6 +41,7 @@ public class Producto implements Serializable {
 		this.setStock(stock);
 		this.setEstado(estado);
 		this.setCategoria(categoria);
+		bodegas = new ArrayList<Bodega>();
 	}
 
 	public Producto() {
