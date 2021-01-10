@@ -27,8 +27,7 @@ public class Producto implements Serializable {
 	@JoinColumn
 	private Categoria categoria;
 	
-	@ManyToMany
-	@JoinColumn
+	@ManyToMany(mappedBy = "productos")
 	private List<Bodega> bodegas;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
@@ -45,7 +44,7 @@ public class Producto implements Serializable {
 	}
 
 	public Producto() {
-		super();
+		bodegas = new ArrayList<Bodega>();
 	}
 	
 	

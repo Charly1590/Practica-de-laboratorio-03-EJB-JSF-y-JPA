@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -32,8 +34,12 @@ public class Bodega implements Serializable {
 	@JoinColumn
 	private Ciudad ciudad;
 	
-	@ManyToMany(mappedBy = "bodegas")
-	@JoinColumn
+	@JoinTable(
+	        name = "Bodega_Producto",
+	        joinColumns = @JoinColumn(name = "FK_Bodega", nullable = false),
+	        inverseJoinColumns = @JoinColumn(name="FK_Producto", nullable = false)
+	    )
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Producto> productos;
 	
 	public Bodega(int id, String nombre, String Direccion, Ciudad ciudad) {
@@ -45,7 +51,7 @@ public class Bodega implements Serializable {
 	}
 
 	public Bodega() {
-		super();
+		productos = new ArrayList<Producto>();
 	}
 	
 	
