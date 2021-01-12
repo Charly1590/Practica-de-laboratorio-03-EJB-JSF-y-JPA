@@ -170,7 +170,7 @@
             </h:column>
 		</h:dataTable>
 		</h:form>
-		<h:form>
+		
 			
 			<p>Nombre:</p>
 			<h:inputText size="100" value="#{bodegaBean.nombreProducto}" label="Nombre"/>
@@ -181,9 +181,8 @@
 			<p>Estado:</p>
 			<h:inputText size="1" value="#{bodegaBean.estadoProducto}" label="Estado"/>
 			<p>Bodega:</p>
-			<h:selectOneListbox value="#{bodegaBean.bodegas}">
-				<f:selectItems value="#{bodegaBean.nombresBodega}"/>				
-			</h:selectOneListbox>
+			
+		<h:form>
 		<h:commandButton value="Añadir" action="#{bodegaBean.crearProducto()}">
 						
 		</h:commandButton>
