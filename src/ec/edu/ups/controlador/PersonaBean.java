@@ -37,12 +37,17 @@ public class PersonaBean implements Serializable{
     private String password;
     
     public void buscarPersonaCedula() {
-    	 persona = ejbPersonaFacade.buscarPorCedula(this.getCedula());
+    	persona = ejbPersonaFacade.buscarPorCedula(this.getCedula());
     	this.setNombre(persona.getNombre());
     	this.setApellido(persona.getApellido());
     	this.setDireccion(persona.getDireccion());
     	this.setTelefono(persona.getTelefono());
     	this.setCorreo(persona.getCorreo());
+    }
+    
+    public void agregarPersona() {
+    	Persona persona2= new Persona(0, nombre, apellido, cedula, direccion, telefono, correo, password, 'C');
+    	ejbPersonaFacade.create(persona2);		
     }
     
     

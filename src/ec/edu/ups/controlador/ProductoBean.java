@@ -22,8 +22,9 @@ import ec.edu.ups.entidades.Producto;
 public class ProductoBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private List<Producto> productos ;
-	private List<Pedido> pedidos=new ArrayList<Pedido>();
+	public static List<Producto> productos;
+	public static boolean centinela=true;
+	public static List<Pedido> pedidos=new ArrayList<Pedido>();
 	private String nombreBusq;
 	
 	@EJB
@@ -32,26 +33,26 @@ public class ProductoBean implements Serializable{
 	
 	@PostConstruct
 	public void init(){
-		productos=ejbProducto.findAll();
-		for(Producto producto : productos) {
-			Pedido pedido=new Pedido(producto, "");
-			pedidos.add(pedido);
+		if(centinela){
+			productos=ejbProducto.findAll();
+			for(Producto producto : productos) {
+				Pedido pedido=new Pedido(producto, "");
+				pedidos.add(pedido);
+			}
 		}
 	}
 	
 	public void buscarPorNombre() {
+		centinela=false;
 		productos=ejbProducto.buscarPorNombre(this.getNombreBusq());
 		pedidos=new ArrayList<Pedido>();
-		System.out.println("si1");
 		if(productos==null || productos.size() == 0) {
 			productos=ejbProducto.findAll();
 		}
-		System.out.println("si2");
 		for(Producto producto : productos) {
 			Pedido pedido=new Pedido(producto, "");
 			pedidos.add(pedido);
 		}
-		System.out.println("si3");
 		
 	}
 	
