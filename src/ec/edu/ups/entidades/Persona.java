@@ -27,6 +27,7 @@ public class Persona implements Serializable {
 	private int id;
 	private String nombre;
 	private String apellido;
+	private String cedula;
     private String direccion;
     private String telefono;
     private String correo;
@@ -37,16 +38,31 @@ public class Persona implements Serializable {
     private List<FacturaCabecera> facturasCab= new ArrayList<FacturaCabecera>();
 
     
-    public Persona(int id, String nombre, String apellido, String direccion, String telefono, String correo, String password, char rol) {
+    public Persona(int id, String nombre, String apellido, String cedula,String direccion, String telefono, String correo, String password, char rol) {
     	this.setId(id);
     	this.setNombre(nombre);
     	this.setApellido(apellido);
+    	this.setCedula(cedula);
     	this.setDireccion(direccion);
     	this.setTelefono(telefono);
     	this.setCorreo(correo);
     	this.setPassword(password);
     	this.setRol(rol);
     }
+    
+    
+
+	public String getCedula() {
+		return cedula;
+	}
+
+
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+
 
 	public Persona() {
 		super();

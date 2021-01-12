@@ -69,32 +69,30 @@
       
       <!-- Lista del menu -->
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
-          <li >
-            <a href="./dashboard.html">
-              <i class="now-ui-icons files_paper"></i>
-              <p>Menu Principal</p>
-            </a>
-          </li>
-          <li class="active ">
-            <a href="./icons.html">
-              <i class="now-ui-icons shopping_box"></i>
-              <p>Bodega 1</p>
-            </a>
-          </li>
-          <li>
-            <a href="./map.html">
-              <i class="now-ui-icons shopping_box"></i>
-              <p>Bodega 2</p>
-            </a>
-          </li>
-          <li>
-            <a href="./notifications.html">
-              <i class="now-ui-icons shopping_box"></i>
-              <p>Bodega 3</p>
-            </a>
-          </li>
-        </ul>
+        <h:form>
+        	<ul class="nav">
+	          <li>
+	            <h:commandLink value="Menu Principal" action="#{navigator.reglaRedir('menuPrincial')}">
+	              <i class="now-ui-icons files_paper"></i>
+	            </h:commandLink>
+	          </li>
+	          <li>
+	            <h:commandLink value="bodega 1" action="#{navigator.reglaRedir('bodega1')}">
+	              <i class="now-ui-icons shopping_box"></i>
+	            </h:commandLink>
+	          </li>
+	          <li>
+	            <h:commandLink value="bodega 2" action="#{navigator.reglaRedir('bodega2')}">
+	              <i class="now-ui-icons shopping_box"></i>
+	            </h:commandLink>
+	          </li>
+	          <li class="active ">
+	            <h:commandLink value="bodega 3" action="#{navigator.reglaRedir('bodega3')}">
+	              <i class="now-ui-icons shopping_box"></i>
+	            </h:commandLink>
+	          </li>
+	        </ul>
+        </h:form>
       </div>
       
       

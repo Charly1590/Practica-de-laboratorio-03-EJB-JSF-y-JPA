@@ -1,11 +1,13 @@
 package ec.edu.ups.ejb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ec.edu.ups.entidades.Producto;
-import ec.edu.ups.entidades.Provincia;
 
 @Stateless
 public class ProductoFacade extends AbstractFacade<Producto> {
@@ -19,5 +21,16 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<Producto> buscarPorNombre (String nombre) {
+    	List<Producto> productos=new ArrayList<Producto>();
+    	String consulta = "Select p From Producto p Where p.nombre=:nombre";
+    	try {
+    		productos= em.createQuery(consulta).setParameter("nombre", nombre).getResultList();
+    	}catch(Exception e) {
+    		System.out.println(">>>Warning (ProductoFacade:buscarPorNombre: )"+e.getMessage());
+    	}
+    	return productos;
     }
 }

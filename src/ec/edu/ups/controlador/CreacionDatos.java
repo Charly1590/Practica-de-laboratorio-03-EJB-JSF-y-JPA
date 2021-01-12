@@ -42,6 +42,7 @@ public class CreacionDatos implements Serializable{
 	private PersonaFacade ejbPersona;
 	
 	public void creacionPrincipal() {
+		
 		Categoria cat=new Categoria(1, "Limpieza");
 		Categoria cat2=new Categoria(2, "Jardineria");
 		Categoria cat3=new Categoria(3, "Cuidado perdonal");
@@ -145,9 +146,9 @@ public class CreacionDatos implements Serializable{
 		ejbBodega.create(bodega2);
 		ejbBodega.create(bodega3);
 		
-		Persona persona = new Persona(1, "Florencio", "Peralta", "Paute", "1122141320", "florencio@gmail.com", "123", 'E');
-		Persona persona2 = new Persona(2, "Carlos", "Peña", "Cuenca", "1257894561", "charly@gmail.com", "123", 'A');
-		Persona persona3 = new Persona(3, "Martin", "Bojojo", "Ricaurte", "0125789456", "martin@gmail.com", "123", 'C');
+		Persona persona = new Persona(1, "Florencio", "Peralta","0123657894","Paute", "1122141320", "florencio@gmail.com", "123", 'E');
+		Persona persona2 = new Persona(2, "Carlos", "Peña","0107331746","Cuenca", "1257894561", "charly@gmail.com", "123", 'A');
+		Persona persona3 = new Persona(3, "Martin", "Bojojo","0125789456","Ricaurte", "0125789456", "martin@gmail.com", "123", 'C');
 		
 		ejbPersona.create(persona);
 		ejbPersona.create(persona2);

@@ -31,6 +31,7 @@ public class FacturaCabecera implements Serializable {
 	private float total;
 	private float iva;
 	private char estado;
+	
 	@ManyToOne
 	@JoinColumn
 	private Persona persona;

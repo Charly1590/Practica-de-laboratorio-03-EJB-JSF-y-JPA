@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16102531331106" configfile="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="Empleado/PrincipalEmpleadoJSF.xhtml" id="pf16102619451933" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16102619451934" path="/Empleado/PrincipalEmpleadoJSF.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Empleado//CrearFactura.xhtml" id="pf16102619451935" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16102619451934" path="/Empleado//CrearFactura.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Empleado//CrearFactura.xhtml" id="pf16102619451935" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16102619451934" path="/Empleado/CrearFactura.xhtml"/>
   <links id="pf16102619451934" target="pf16102619451935" source="pf16102619451933" outcome="crearFactura"/>
 </pageflow:Pageflow>

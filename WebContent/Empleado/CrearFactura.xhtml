@@ -4,7 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" type="javascript"></script>
 	<h:head>
 	    <title> Factura</title>
 	    <style type="text/css">
@@ -87,9 +92,11 @@
 					border-top: 1px solid #BBBBBB;
 				}
 				
-				#contenedorFactura{
+				#contenedorProductos{
 					clear: both;
 				    float: left;
+				    width: 46%;
+				    height: auto;
 				    margin-left: 5%;
 				    margin-top: 2%;
 				}
@@ -102,24 +109,28 @@
 				}
 				
 				
+				#contenedorFactura{
+					float: left;
+					width: 40%;
+				    height: auto;
+					margin-left: 3%;
+				}
 						
 			</style>
 	</h:head>
 	<nav>
 	    <h:form id="formGestionClientes">
 	    	<ul class="nav">
-				<li><a href="">Gestionar Facturas</a>
+				<li><a>Gestionar Facturas</a>
 					<ul>
 						<li><h:commandLink value="Crear Factura" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-						<li><h:commandLink value="Listar Facturas" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-						<li><h:commandLink value="Cancelar Facturas" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+						<li><h:commandLink value="Listar Facturas" action="#{navigator.reglaRedir('listarFactura')}" /></li>
 					</ul>
 				</li>
-				<li><a href="">Gestionar Clientes</a>
+				<li><a>Gestionar Clientes</a>
 					<ul>
 						<li><h:commandLink value="Crear Cliente" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
 						<li><h:commandLink value="Listar Clientes" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-						<li><h:commandLink value="Cancelar Cliente" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
 					</ul>
 				</li>
 				<li><a href="">Cerrar Sesion</a></li>
@@ -127,31 +138,86 @@
 	    </h:form>
 	</nav>
 	<h:body>
-		<div id="buscarProdFac">
-			<input type="text" size="10%"></input>
-			<h:commandButton value="Buscar"/>
+		<h:form id="fa1">
+			<div id="buscarProdFac">
+				<h3>Buscar por nombre</h3>
+				<p:inputText id="nombreBuscar" value="#{productoBean.nombreBusq}" type="text"></p:inputText>
+				<p:commandButton value="Buscar" action="#{productoBean.buscarPorNombre}" update="fa1">
+				</p:commandButton>
+			</div>
+		    <div id="contenedorProductos">
+		    	<p:dataTable id="tablaProd" value="#{productoBean.pedidos}" var="ped"
+					 headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+					<p:column headerText="Id">
+	                	<h:outputText value="#{ped.producto.id}"/>
+	                </p:column>
+	            	<p:column headerText="Nombre">
+	                	<h:outputText value="#{ped.producto.nombre}"/>
+	                </p:column>
+	                <p:column headerText="Stock">
+		                <h:outputText value="#{ped.producto.stock}"/>
+	            	</p:column>
+	                <p:column headerText="Bodega">
+	                	<h:outputText value="#{ped.producto.bodegas.get(0).nombre}" />
+	                </p:column>
+		    		<p:column headerText="Cantidad a Pedir">
+		                <p:inputText id="cantidad" name="header" value="#{ped.cantidad}" type="text"></p:inputText>
+	            	</p:column> 
+	            	<p:column headerText="">
+	            		<p:commandButton value="Agregar" actionListener="#{facturaDetalleBean.addDetallesFac(ped)}" update="fa1 fa3">
+	            		</p:commandButton>
+	            	</p:column>
+		    	</p:dataTable>
+		    </div>   
+		  </h:form>  
+		  <div id="contenedorFactura">
+		  <h:form id="fa2"> 
+				<h3>Buscar Cliente</h3>
+				<p></p>
+				<h:inputText id="cedulaBuscar" value="#{personaBean.cedula}" type="text"></h:inputText>
+				<h:commandButton value="buscarPersona" action="#{personaBean.buscarPersonaCedula}">
+					<f:ajax execute="cedulaBuscar" render="salidaNombre salidaApellido salidaCedula salidaTelefono salidaDireccion" />
+				</h:commandButton>
+				<p></p>
+				<h:outputLabel for="salidaNombre" value="Nombre:" ></h:outputLabel>
+				<h:inputText id="salidaNombre" value="#{personaBean.nombre}"></h:inputText>
+		        <h:outputLabel for="salidaApellido" value="Apellido:"></h:outputLabel>
+		        <h:inputText id="salidaApellido" value="#{personaBean.apellido}"></h:inputText>
+		        <p></p>
+		        <h:outputLabel for="salidaTelefono" value="Telefono:" ></h:outputLabel>
+		        <h:inputText id="salidaTelefono" value="#{personaBean.telefono}"></h:inputText>
+		        <h:outputLabel for="salidaDireccion" value="Direccion:" ></h:outputLabel>
+		        <h:inputText id="salidaDireccion" value="#{personaBean.direccion}"></h:inputText>
+		  </h:form>
+		  <h:form id="fa3">    
+		        <div id="detalleFactura">
+	        		<p:dataTable id="tablaDetalle" value="#{facturaDetalleBean.detallesFac}" var="detalle" styleClass="tabla"
+						headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+						<p:column>
+		                	<f:facet name="header" id="prodId">Producto</f:facet>#{detalle.producto.nombre}
+		                </p:column>
+		            	<p:column>
+		                	<f:facet name="header" id="prodNombre">Precio</f:facet>#{detalle.producto.precio}
+		                </p:column>
+		                <p:column>
+			                <f:facet name="header" id="prodStock">Cantidad</f:facet>#{detalle.cantidad}
+		            	</p:column>
+		                <p:column>
+		                	<f:facet name="header" id="prodBodega">Total</f:facet>#{detalle.total}
+		                </p:column>
+			    	</p:dataTable>
+		        </div>
+		        <p>
+		        <h:outputLabel for="salidaDireccion" value="Subtotal: #{facturaDetalleBean.subtotal}" ></h:outputLabel>
+		        </p>
+		        <p>
+		        <h:outputLabel for="salidaDireccion" value="IVA: #{facturaDetalleBean.iva}" ></h:outputLabel>
+		        </p>
+		        <h:outputLabel for="salidaDireccion" value="Total: #{facturaDetalleBean.totalFinal}" ></h:outputLabel>
+		         <p></p>
+		        <p:commandButton value="Realizar Factura" action="#{facturaDetalleBean.guardarFactura()}" update="fa1 fa2 fa3">
+				</p:commandButton>
+		</h:form>
 		</div>
-	    <div id="contenedorFactura">
-	    	<h:dataTable value="#{productoBean.productos}" var="prod" styleClass="tabla"
-				headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-				<h:column>
-                	<f:facet name="header">Codigo</f:facet>#{prod.id}
-                </h:column>
-            	<h:column>
-                	<f:facet name="header">Nombre</f:facet>#{prod.nombre}
-                </h:column>
-                <h:column>
-                	<f:facet name="header">Sucursal</f:facet>#{prod.bodegas.get(0).nombre}
-                </h:column>
-	    		<h:column>
-	                <f:facet name="header">Cantidad</f:facet>
-	                <h:inputText size="10"  />
-            	</h:column>
-            	<h:column>
-            		<f:facet name="header"></f:facet>
-	                <h:commandButton value="Agregar" size="10"  />
-            	</h:column>
-	    	</h:dataTable>
-	    </div>
 	</h:body>
 </html>

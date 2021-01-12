@@ -1,11 +1,15 @@
 package ec.edu.ups.ejb;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ec.edu.ups.entidades.Persona;
+import ec.edu.ups.entidades.Producto;
 
 @Stateless
 public class PersonaFacade extends AbstractFacade<Persona> {
@@ -20,6 +24,17 @@ public class PersonaFacade extends AbstractFacade<Persona> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public Persona buscarPorCedula (String cedula) {
+    	Persona persona=null;
+    	String consulta = "Select per From Persona per Where per.cedula=:cedula";
+    	try {
+    		persona= (Persona) em.createQuery(consulta).setParameter("cedula", cedula).getSingleResult();
+    	}catch(Exception e) {
+    		System.out.println(">>>Warning (PersonaFacade:buscarPorCedula: )"+e.getMessage());
+    	}
+    	return persona;
     }
 }
 

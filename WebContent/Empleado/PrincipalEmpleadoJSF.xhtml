@@ -69,18 +69,16 @@
 <h:body>
     <h:form id="formGestionClientes">
     	<ul class="nav">
-			<li><a href="">Gestionar Facturas</a>
+			<li><a>Gestionar Facturas</a>
 				<ul>
 					<li><h:commandLink value="Crear Factura" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-					<li><h:commandLink value="Listar Facturas" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-					<li><h:commandLink value="Cancelar Facturas" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+					<li><h:commandLink value="Listar Facturas" action="#{navigator.reglaRedir('listarFactura')}" /></li>
 				</ul>
 			</li>
-			<li><a href="">Gestionar Clientes</a>
+			<li><a>Gestionar Clientes</a>
 				<ul>
 					<li><h:commandLink value="Crear Cliente" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
 					<li><h:commandLink value="Listar Clientes" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-					<li><h:commandLink value="Cancelar Cliente" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
 				</ul>
 			</li>
 			<li><a href="">Cerrar Sesion</a></li>

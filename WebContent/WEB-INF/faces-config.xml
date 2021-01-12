@@ -6,14 +6,115 @@
     version="2.3">
     
     <navigation-rule> 
-	
 	   <from-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</from-view-id> 
-	   
 	   <navigation-case> 
 	      <from-outcome>crearFactura</from-outcome> 
-	      <to-view-id>/Empleado//CrearFactura.xhtml</to-view-id> 
+	      <to-view-id>/Empleado/CrearFactura.xhtml</to-view-id> 
 	   </navigation-case> 
-	   
+	   <navigation-case> 
+	      <from-outcome>listarFactura</from-outcome> 
+	      <to-view-id>/Empleado/ListarFacturas.xhtml</to-view-id> 
+	   </navigation-case> 
 	</navigation-rule> 
+	
+	<navigation-rule> 
+	   <from-view-id>/Empleado/CrearFactura.xhtml</from-view-id> 
+	   <navigation-case> 
+	      <from-outcome>listarFactura</from-outcome> 
+	      <to-view-id>/Empleado/ListarFacturas.xhtml</to-view-id> 
+	   </navigation-case> 
+	</navigation-rule> 
+	
+	<navigation-rule> 
+	   <from-view-id>/Empleado/ListarFacturas.xhtml</from-view-id> 
+	   <navigation-case> 
+	      <from-outcome>crearFactura</from-outcome> 
+	      <to-view-id>/Empleado/CrearFactura.xhtml</to-view-id> 
+	   </navigation-case> 
+	</navigation-rule> 
+	
+	<navigation-rule>
+	
+		<from-view-id>/menupricp.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>bodega1</from-outcome>
+			<to-view-id>/menuBodega1.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega2</from-outcome>
+			<to-view-id>/menuBodega2.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega3</from-outcome>
+			<to-view-id>/menuBodega3.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+	
+	<navigation-rule>
+	
+		<from-view-id>/menuBodega1.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>menuPrincial</from-outcome>
+			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega2</from-outcome>
+			<to-view-id>/menuBodega2.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega3</from-outcome>
+			<to-view-id>/menuBodega3.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+	
+	<navigation-rule>
+	
+		<from-view-id>/menuBodega2.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>menuPrincial</from-outcome>
+			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega1</from-outcome>
+			<to-view-id>/menuBodega1.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega3</from-outcome>
+			<to-view-id>/menuBodega3.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+	
+	<navigation-rule>
+	
+		<from-view-id>/menuBodega3.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>menuPrincial</from-outcome>
+			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega1</from-outcome>
+			<to-view-id>/menuBodega1.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega2</from-outcome>
+			<to-view-id>/menuBodega2.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
 
 </faces-config>
