@@ -33,8 +33,12 @@ public class BodegaBean implements Serializable{
 	@EJB
 	private ProductoFacade ejbProducto;
 	private List<Bodega> bodegas;
-	private int bodegaActual=0;	
+	private int bodegaActual;	
 	private boolean editar=true;
+	private String nombreProducto;
+	private float precioProducto;
+	private int stockProducto;
+	private char estadoProducto;
 	
 	public BodegaBean () {
 		
@@ -64,7 +68,7 @@ public class BodegaBean implements Serializable{
 		return bodegaActual;
 	}
 	public String setBodegaActual(int bodegaActual) {
-		this.bodegaActual = bodegaActual;
+		this.bodegaActual = bodegaActual;		
 		return null;
 	}
 	public BodegaFacade getEjbBodegas() {
@@ -82,9 +86,51 @@ public class BodegaBean implements Serializable{
 		return null;
 	}
 	public void cambiarEditar(Producto p) {
-		editar=!editar;
-		System.out.println("Stock:"+p.getStock());
+		editar=!editar;		
 		ejbProducto.edit(p);			
 	}
-
+	public void crearProducto() {
+		System.out.println("Bodega Actual:"+bodegaActual);
+		Producto productoAuxiliar= new Producto(nombreProducto, precioProducto, stockProducto, estadoProducto);
+		ejbProducto.create(productoAuxiliar);		
+		bodegas.get(bodegaActual).addProductos(productoAuxiliar);
+		ejbBodegas.edit(bodegas.get(bodegaActual));
+	}
+	public void eliminarEditar(Producto p) {			
+		bodegas.get(bodegaActual).delelteProducto(p);
+		ejbBodegas.edit(bodegas.get(bodegaActual));
+		ejbProducto.remove(p);			
+	}
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public float getPrecioProducto() {
+		return precioProducto;
+	}
+	public void setPrecioProducto(float precioProducto) {
+		this.precioProducto = precioProducto;
+	}
+	public int getStockProducto() {
+		return stockProducto;
+	}
+	public void setStockProducto(int stockProducto) {
+		this.stockProducto = stockProducto;
+	}
+	public char getEstadoProducto() {
+		return estadoProducto;
+	}
+	public void setEstadoProducto(char estadoProducto) {
+		this.estadoProducto = estadoProducto;
+	}
+	public String[] getNombresBodega() {
+		String [] nombres=new String [bodegas.size()];
+		for(int i=0;i<bodegas.size();i++) {
+			nombres[i]=bodegas.get(i).getNombre();
+		}
+		return nombres;
+	}
+	
 }
