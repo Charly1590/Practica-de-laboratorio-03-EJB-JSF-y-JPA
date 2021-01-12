@@ -22,6 +22,7 @@ public class ProductoBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private List<Producto> productos;
+
 	
 	@EJB
 	private ProductoFacade ejbProducto;
@@ -42,6 +43,11 @@ public class ProductoBean implements Serializable{
 		this.productos = productos;
 	}
 	
+
+	
+}
 	
 
-}
+	
+
+

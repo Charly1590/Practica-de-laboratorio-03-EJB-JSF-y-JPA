@@ -3,6 +3,7 @@ package ec.edu.ups.ejb;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class AbstractFacade<T> {
 
@@ -31,9 +32,9 @@ public abstract class AbstractFacade<T> {
     }
 
     public List<T> findAll() {
-		javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+		CriteriaQuery<Object> cq = getEntityManager().getCriteriaBuilder().createQuery();
 		cq.select(cq.from(entityClass));
-		return getEntityManager().createQuery(cq).getResultList();
+		return (List<T>) getEntityManager().createQuery(cq).getResultList();
     }
 
     public List<T> findRange(int[] range) {
