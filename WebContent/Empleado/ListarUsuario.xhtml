@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" type="javascript"></script>
 	<h:head>
-	    <title>Crear Cliente</title>
+		<title>Listar Facturas</title>
 	    <style type="text/css">
 				
 				* {
@@ -92,7 +92,7 @@
 					border-top: 1px solid #BBBBBB;
 				}
 				
-				#contenedorProductos{
+				#contenedorCabeceras{
 					clear: both;
 				    float: left;
 				    width: 46%;
@@ -100,6 +100,16 @@
 				    margin-left: 5%;
 				    margin-top: 2%;
 				}
+				
+				#filtros{
+					clear: both;
+				    float: left;
+				    width: 46%;
+				    height: auto;
+				    margin-left: 5%;
+				    margin-top: 2%;
+				}
+				
 				
 				#buscarProdFac{
 					clear: both;
@@ -109,17 +119,13 @@
 				}
 				
 				
-				#contenedorFactura{
+				#contenedorClientes{
+					clear: both;
 					float: left;
-					width: 40%;
+					width: 46%;
 				    height: auto;
 					margin-left: 3%;
-				}
-				
-				#central{
-					float: left;
-				    margin-left: 35%;
-				    margin-top: 2%;
+					margin-top: 2%;
 				}
 						
 			</style>
@@ -144,7 +150,45 @@
 	    </h:form>
 	</nav>
 	<h:body>
-		<div id="central">
+	
+	    <div id="filtros">
+	    	<h:form>
+		    	<h3>Buscar por cedula</h3>
+		    	<p:inputText id="ced" value="#{buscarFacturaController.cedula}" type="text"/>
+		    	<p:commandButton value="Buscar" action="#{buscarFacturaController.buscarPorCedula}"  update="clientes"/>
+		    </h:form>
+	    </div>
+	   	
+   		<div id="contenedorClientes">
+   			<h:form id="clientes">
+	   			<p:dataTable id="clientes" value="#{personaBean.personas}" var="per" styleClass="tabla" 
+		   			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Nombre</f:facet>#{per.nombre}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Persona</f:facet>#{per.apellido}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Cedula</f:facet>#{per.cedula}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Direccion</f:facet>#{per.direccion}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Telefono</f:facet>#{per.telefono}
+		   			</p:column>
+		   			<p:column>
+		   				<p:commandButton value= "editar"></p:commandButton>
+		   			</p:column>
+		   			<p:column>
+		   				<p:commandButton value="eliminar"></p:commandButton>
+		   			</p:column>
+		   		</p:dataTable>
+	   		</h:form>
+   		</div>
+	    
+	    <div id="central">
 			<h:form id="crearUsuario">
 				<p:panelGrid columns="2">
 		    		<h3>Nombre: </h3>

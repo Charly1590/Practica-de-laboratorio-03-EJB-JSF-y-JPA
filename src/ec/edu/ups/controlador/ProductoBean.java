@@ -35,6 +35,7 @@ public class ProductoBean implements Serializable{
 	public void init(){
 		if(centinela){
 			productos=ejbProducto.findAll();
+			System.out.println("tyamana: "+productos.get(0).getBodegas().get(0).getNombre());
 			for(Producto producto : productos) {
 				Pedido pedido=new Pedido(producto, "");
 				pedidos.add(pedido);

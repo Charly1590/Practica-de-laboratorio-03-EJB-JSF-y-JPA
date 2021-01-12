@@ -2,7 +2,9 @@ package ec.edu.ups.controlador;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.FacesConfig;
@@ -27,6 +29,8 @@ public class PersonaBean implements Serializable{
 	private PersonaFacade ejbPersonaFacade;
 	
 	public static Persona persona;
+	
+	public static List<Persona> personas;
 	
 	private String nombre;
 	private String apellido;
@@ -59,8 +63,19 @@ public class PersonaBean implements Serializable{
     		
     }
     
+    @PostConstruct
+    public void init() {
+    	personas=ejbPersonaFacade.listarClientes();
+    }
     
 
+	public List<Persona> getPersonas() {
+		return personas;
+	}
+
+	public void setPersonas(List<Persona> personas) {
+		this.personas = personas;
+	}
 
 	public static Persona getPersona() {
 		return persona;

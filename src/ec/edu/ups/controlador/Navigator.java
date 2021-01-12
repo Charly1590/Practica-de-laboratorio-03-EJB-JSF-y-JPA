@@ -18,6 +18,8 @@ public class Navigator {
 			return "crearFactura";
 		}else if(page.equals("listarFactura")) {
 			return "listarFactura";
+		}else if(page.equals("crearCliente")) {
+			return "crearCliente";
 		}else if(page.equals("menuPrincial")) {
 			return "menuPrincial";
 		}else if(page.equals("bodega1")) {

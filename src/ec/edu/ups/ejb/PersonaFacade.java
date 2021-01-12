@@ -36,5 +36,28 @@ public class PersonaFacade extends AbstractFacade<Persona> {
     	}
     	return persona;
     }
+    
+    public Persona buscarClientePorCedula (String cedula) {
+    	Persona persona=null;
+    	String consulta = "Select per From Persona per Where per.cedula=:cedula and per.rol='C'";
+    	try {
+    		persona= (Persona) em.createQuery(consulta).setParameter("cedula", cedula).getSingleResult();
+    	}catch(Exception e) {
+    		System.out.println(">>>Warning (PersonaFacade:buscarPorCedula: )"+e.getMessage());
+    	}
+    	return persona;
+    }
+    
+    public List<Persona> listarClientes () {
+    	List<Persona> persona=new ArrayList<Persona>();
+    	String consulta = "Select per From Persona per Where per.rol='C'";
+    	try {
+    		persona= em.createQuery(consulta).getResultList();
+    	}catch(Exception e) {
+    		System.out.println(">>>Warning (PersonaFacade:buscarPorCedula: )"+e.getMessage());
+    	}
+    	return persona;
+    }
+    
 }
 
