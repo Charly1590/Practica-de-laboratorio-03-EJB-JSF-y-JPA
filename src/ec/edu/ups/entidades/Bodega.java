@@ -103,7 +103,9 @@ public class Bodega implements Serializable {
 	}
 	
 	
-
+	public void delelteProducto(Producto producto) {
+        this.productos.remove(producto);
+    }
 
 
 	@Override

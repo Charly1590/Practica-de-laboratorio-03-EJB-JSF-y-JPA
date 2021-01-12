@@ -130,11 +130,9 @@ public class CategoriaBean implements Serializable {
     			}
     		}
     	}else {
-	        for (int i = 0; i < listaArr.size(); i++) {
+	        for (int i = 0; i < listaArr.size()-1; i++) {
 	        	if (listaArr.get(i).getCategoria().getNombre().equals(categoria) && listaArr.get(i).getNombre().toLowerCase().contains(text.toLowerCase())) {
-		        	
-	        		
-		       		
+
 		       		System.out.println("Prod Actual: "+listaArr.get(i).getNombre());
 		       		stosTemp.add(listaArr.get(i));
 		       		

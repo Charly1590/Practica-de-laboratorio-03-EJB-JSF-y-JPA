@@ -11,7 +11,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" type="javascript"></script>
 	<h:head>
-	    <title> Factura</title>
+	    <title>Crear Cliente</title>
 	    <style type="text/css">
 				
 				* {
@@ -145,22 +145,24 @@
 	</nav>
 	<h:body>
 		<div id="central">
-			<p:panelGrid columns="2">
-    		<h3>Nombre: </h3>
-			<p:inputText id="nombre" value="#{personaBean.nombre}" cols="2" />
-    		<h3>Apellido: </h3>
-    		<p:inputText id="apellido" value="#{personaBean.apellido}" cols="2" />
-    		<h3>Cedula: </h3>
-    		<p:inputText id="cedula" value="#{personaBean.cedula}" cols="2" />
-    		<h3>Direccion: </h3>
-    		<p:inputText id="direccion" value="#{personaBean.direccion}" cols="2" />
-    		<h3>Telefono: </h3>
-    		<p:inputText id="telefono" value="#{personaBean.telefono}" cols="2" />
-    		<h3>Correo: </h3>
-    		<p:inputText id="correo" value="#{personaBean.correo}" cols="2" />
-    		<h3>Agregar Cliente: </h3>
-    		<p:commandButton value="Aceptar" action="#{personaBean.agregarPersona}"/>
-    	</p:panelGrid>
+			<h:form id="crearUsuario">
+				<p:panelGrid columns="2">
+		    		<h3>Nombre: </h3>
+					<p:inputText id="nombre" value="#{personaBean.nombre}" cols="2" />
+		    		<h3>Apellido: </h3>
+		    		<p:inputText id="apellido" value="#{personaBean.apellido}" cols="2" />
+		    		<h3>Cedula: </h3>
+		    		<p:inputText id="cedula" value="#{personaBean.cedula}" cols="2" />
+		    		<h3>Direccion: </h3>
+		    		<p:inputText id="direccion" value="#{personaBean.direccion}" cols="2" />
+		    		<h3>Telefono: </h3>
+		    		<p:inputText id="telefono" value="#{personaBean.telefono}" cols="2" />
+		    		<h3>Correo: </h3>
+		    		<p:inputText id="correo" value="#{personaBean.correo}" cols="2" />
+		    		<h3>Agregar Cliente: </h3>
+		    		<p:commandButton value="Aceptar" action="#{personaBean.agregarPersona}" update="crearUsuario"/>
+	    		</p:panelGrid>
+			</h:form>
 		</div>
 	</h:body>
 </html>

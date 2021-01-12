@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+	    <title> Bodegas</title>
+	    <style type="text/css">
+				
+				* {
+					margin:0px;
+					padding:0px;
+				}
+				
+				#header {
+					margin:auto;
+					width:500px;
+					font-family:Arial, Helvetica, sans-serif;
+				}
+				
+				ul, ol {
+					list-style:none;
+				}
+				
+				.nav > li {
+					float:left;
+				}
+				
+				.nav li a {
+					background-color:#000;
+					color:#fff;
+					text-decoration:none;
+					padding:10px 12px;
+					display:block;
+				}
+				
+				.nav li a:hover {
+					background-color:#434343;
+				}
+				
+				.nav li ul {
+					display:none;
+					position:absolute;
+					min-width:140px;
+				}
+				
+				.nav li:hover > ul {
+					display:block;
+				}
+				
+				.nav li ul li {
+					position:relative;
+				}
+				
+				.nav li ul li ul {
+					right:-140px;
+					top:0px;
+				}
+				
+				boton {
+				  border-radius: 5px;
+				  background: black;
+				}
+				
+				.tabla {
+					border-collapse: collapse;
+				}
+				
+				.cabeceraTabla {
+					text-align: center;
+					background: none repeat scroll 0 0 #E5E5E5;
+					border-bottom: 1px solid #BBBBBB;
+					padding: 8px;
+				}
+				
+				.filaPar {
+					text-align: center;
+					background: none repeat scroll 0 0 #FFFFFFF;
+					border-top: 1px solid #BBBBBB;
+				}
+				
+				.filaImpar {
+					text-align: center;
+					background: none repeat scroll 0 0 #F9F9F9;
+					border-top: 1px solid #BBBBBB;
+				}
+				
+				#contenedorFactura{
+					clear: both;
+				    float: left;
+				    margin-left: 5%;
+				    margin-top: 2%;
+				}
+				
+				#buscarProdFac{
+					clear: both;
+				    float: left;
+				    margin-left: 5%;
+				    margin-top: 1%;
+				}
+				
+				
+						
+			</style>
+	</h:head>
+	<nav>
+	    <h:form id="formGestionBodegas">
+	    	<ul class="nav">
+				<li><a href="">Gestionar Bodegas</a>
+					<ul>
+						<li><h:commandLink value="Gestionar #{bodegaBean2.bodegas.get(0).nombre}" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+						<li><h:commandLink value="Gestionar #{bodegaBean2.bodegas.get(1).nombre}" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+						<li><h:commandLink value="Gestionar #{bodegaBean2.bodegas.get(2).nombre}" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>						
+					</ul>
+				</li>				
+				<li><a href="">Cerrar Sesion</a></li>
+			</ul>
+	    </h:form>
+	</nav>
+	<h:body>
+		<h:form>	
+		<h:dataTable value="#{bodegaBean2.bodegas}" var="o" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+               	<f:facet name="header">Nombre</f:facet>#{o.nombre}               	
+            </h:column>
+            <h:column>
+               	<f:facet name="header">Direccion</f:facet>#{o.direccion}               	
+            </h:column>
+            <h:column>
+               	<f:facet name="header">Ciudad</f:facet>#{o.ciudad.nombre}               	
+            </h:column>
+            <h:column>
+               	<h:commandButton value="Visualizar #{o.id}"  action="#{bodegaBean2.setBodegaActual(o.id-1)}">
+               		<f:ajax render="tablaProductos"></f:ajax>
+               	</h:commandButton>               	
+            </h:column>		
+		</h:dataTable>		
+		</h:form>
+		<h:form id="tablaProductos">			
+		<h:dataTable value="#{bodegaBean2.productosBodega}" var="i" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar" >
+			<h:column>
+               	<f:facet name="header">Nombre</f:facet>
+               	<h:inputText value="#{i.nombre}" size="10" />               	
+            </h:column>
+            <h:column>
+               	<f:facet name="header">Precio</f:facet>
+               	<h:inputText value="#{i.precio}" size="10" />
+            </h:column>          
+            <h:column>
+               	<f:facet name="header">Stock</f:facet>
+               	<h:inputText value="#{i.stock}" size="10" />               	
+            </h:column>
+            <h:column>
+               	<f:facet name="header">Estado</f:facet>
+               	<h:inputText value="#{i.estado}" size="10" />
+            </h:column>
+            <h:column>
+               	<f:facet name="header">Editar</f:facet>               	
+               	<h:commandButton value="Guardar" action="#{bodegaBean2.cambiarEditar(i)}">
+               		<f:ajax render="tablaProductos"></f:ajax>
+				</h:commandButton>	
+            </h:column>
+            <h:column>
+               	<f:facet name="header">Eliminar</f:facet>               	
+               	<h:commandButton value="Eliminar" action="#{bodegaBean2.eliminarEditar(i)}">
+               		<f:ajax render="tablaProductos"></f:ajax>
+				</h:commandButton>
+            </h:column>
+		</h:dataTable>
+		</h:form>
+		<h:form>			
+			<p>Nombre:</p>
+			<h:inputText size="100" value="#{bodegaBean2.nombreProducto}" label="Nombre"/>
+			<p>Precio:</p>
+			<h:inputText size="10" value="#{bodegaBean2.precioProducto}" label="Precio"/>
+			<p>Stock:</p>
+			<h:inputText size="3" value="#{bodegaBean2.stockProducto}" label="Stock"/>
+			<p>Estado:</p>
+			<h:inputText size="1" value="#{bodegaBean2.estadoProducto}" label="Estado"/>
+			<p>Bodega:</p>
+			<h:selectOneListbox value="#{bodegaBean2.bodegas}" >
+				
+			</h:selectOneListbox>		
+		<h:commandButton value="Añadir" action="#{bodegaBean2.crearProducto()}">
+						
+		</h:commandButton>
+		</h:form>		
+	</h:body>
+</html>
