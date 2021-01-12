@@ -34,18 +34,18 @@ public class BodegaBean implements Serializable{
 	private ProductoFacade ejbProducto;
 	private List<Bodega> bodegas;
 	private int bodegaActual;	
-	private boolean editar=true;
 	private String nombreProducto;
 	private float precioProducto;
 	private int stockProducto;
 	private char estadoProducto;
+	
 	
 	public BodegaBean () {
 		
 	}
 	@PostConstruct
 	public void init(){
-		bodegas=ejbBodegas.findAll();
+		bodegas=ejbBodegas.findAll();		
 	}
 	public List<Bodega> getBodegas() {
 		return bodegas;
@@ -77,26 +77,16 @@ public class BodegaBean implements Serializable{
 	public void setEjbBodegas(BodegaFacade ejbBodegas) {
 		this.ejbBodegas = ejbBodegas;
 	}
-	public boolean isEditar() {
-		return editar;
-	}	
-
-	public String setEditar(boolean editar) {
-		this.editar = editar;
-		return null;
+	public void editarProducto(Producto p) {		
+		ejbProducto.edit(p);
 	}
-	public void cambiarEditar(Producto p) {
-		editar=!editar;		
-		ejbProducto.edit(p);			
-	}
-	public void crearProducto() {
-		System.out.println("Bodega Actual:"+bodegaActual);
+	public void crearProducto() {		
 		Producto productoAuxiliar= new Producto(nombreProducto, precioProducto, stockProducto, estadoProducto);
 		ejbProducto.create(productoAuxiliar);		
 		bodegas.get(bodegaActual).addProductos(productoAuxiliar);
 		ejbBodegas.edit(bodegas.get(bodegaActual));
 	}
-	public void eliminarEditar(Producto p) {			
+	public void eliminarProducto(Producto p) {
 		bodegas.get(bodegaActual).delelteProducto(p);
 		ejbBodegas.edit(bodegas.get(bodegaActual));
 		ejbProducto.remove(p);			
@@ -132,5 +122,6 @@ public class BodegaBean implements Serializable{
 		}
 		return nombres;
 	}
+	
 	
 }

@@ -164,8 +164,19 @@ public class Bodega implements Serializable {
 		this.productos.add(productos);
 	}
 	public void delelteProducto(Producto producto) {
-		this.productos.remove(producto);
+		this.productos.remove(producto);		
 	}
+	public void editProducto(Producto producto) {
+		this.productos.get(this.productos.indexOf(producto)).setEstado(producto.getEstado());
+		System.out.println("Nombre actual:"+this.productos.get(this.productos.indexOf(producto)).getNombre());
+		System.out.println("Nombre nuevo:"+producto.getNombre());
+		this.productos.get(this.productos.indexOf(producto)).setNombre(producto.getNombre());
+		this.productos.get(this.productos.indexOf(producto)).setPrecio(producto.getPrecio());
+		this.productos.get(this.productos.indexOf(producto)).setStock(producto.getStock());
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Bodega [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", ciudad=" + ciudad
