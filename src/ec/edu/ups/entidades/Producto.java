@@ -34,6 +34,8 @@ public class Producto implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<FacturaDetalle> facturasDetallesList;
 	
+	
+	
 	public Producto(int id, String nombre, float precio, int stock, char estado, Categoria categoria) {
 		this.setId(id);
 		this.setNombre(nombre);
@@ -149,6 +151,8 @@ public class Producto implements Serializable {
 		    return false;
 		return true;
 	}
+
+	
    
 }
 

@@ -44,7 +44,7 @@ public class CreacionDatos implements Serializable{
 	public void creacionPrincipal() {
 		Categoria cat=new Categoria(1, "Limpieza");
 		Categoria cat2=new Categoria(2, "Jardineria");
-		Categoria cat3=new Categoria(3, "Cuidado perdonal");
+		Categoria cat3=new Categoria(3, "Cuidado personal");
 		Categoria cat4=new Categoria(4, "Cocina");
 		Categoria cat5=new Categoria(5, "Electricidad");
 		Categoria cat6=new Categoria(6, "Herramientas");
@@ -75,18 +75,18 @@ public class CreacionDatos implements Serializable{
 		
 		Producto pord11=new Producto(11, "Platos",(float) 6, 100, 'S', cat4);
 		Producto pord12=new Producto(12, "Cubiertos",(float) 1.50, 100, 'S', cat4);
-		Producto pord13=new Producto(13, "Cuchillos",(float) 3, 70, 'S', cat4);
+		Producto pord13=new Producto(13, "Cuchillos",(float) 3, 70, 'S', cat4);//2
 		
 		Producto pord14=new Producto(14, "Foco Normal",(float) 1.50, 50, 'S', cat5);
 		Producto pord15=new Producto(15, "Foco Ahorrador",(float) 2.50, 80, 'S', cat5);
-		Producto pord16=new Producto(16, "Boquilla",(float) 0.75, 100, 'S', cat5);
+		Producto pord16=new Producto(16, "Boquilla",(float) 0.75, 100, 'S', cat5);//3
 		
 		Producto pord17=new Producto(17, "Alicate",(float) 3.75, 70, 'S', cat6);
 		Producto pord18=new Producto(15, "Destornillador plano",(float) 0.5, 100, 'S', cat6);
 		Producto pord19=new Producto(19, "Destornillador estrella",(float) 0.5, 100, 'S', cat6);
 		
 		Producto pord20=new Producto(20, "Lavadora",(float) 769.99, 10, 'S', cat7);
-		Producto pord21=new Producto(21, "Secadora",(float) 454.99, 10, 'S', cat7);
+		Producto pord21=new Producto(21, "Secadora",(float) 454.99, 10, 'S', cat7);//1
 		Producto pord22=new Producto(22, "Refrigeradora",(float) 2400, 5, 'S', cat7);
 		
 		Producto pord23=new Producto(23, "Jagermeister",(float) 29, 20, 'S', cat8);
