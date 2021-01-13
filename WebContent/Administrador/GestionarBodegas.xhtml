@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 	<h:head>
 	    <title> Bodegas</title>
 	    <style type="text/css">
@@ -121,49 +122,49 @@
 	</nav>
 	<h:body>
 		<h:form>	
-		<h:dataTable value="#{bodegaBean2.bodegas}" var="o" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
+		<p:dataTable value="#{bodegaBean2.bodegas}" var="o" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<p:column>
                	<f:facet name="header">Nombre</f:facet>#{o.nombre}               	
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column>
                	<f:facet name="header">Direccion</f:facet>#{o.direccion}               	
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column>
                	<f:facet name="header">Ciudad</f:facet>#{o.ciudad.nombre}               	
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column>
             	<f:facet name="header">Eleccion</f:facet>
                	<h:commandButton value="Visualizar #{o.id}"  action="#{bodegaBean2.setBodegaActual(o.id-1)}"> <f:ajax render="tablaProductos"/></h:commandButton>               	       	               	           	
-            </h:column>                       		
-		</h:dataTable>
+            </p:column>                       		
+		</p:dataTable>
 		</h:form>
 		<h:form id="tablaProductos">	
-		<h:dataTable  value="#{bodegaBean2.productosBodega}" var="i" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar" >			
-			<h:column>
+		<p:dataTable  value="#{bodegaBean2.productosBodega}" var="i" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar" >			
+			<p:column filterBy="#{i.nombre}" filterStyle="width:100px;" filterMatchMode="contains">
                	<f:facet name="header">Nombre</f:facet>
                	<h:inputText value="#{i.nombre}" size="10"/>               	
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column filterBy="#{i.precio}" filterStyle="width:100px;" filterMatchMode="contains">
                	<f:facet name="header">Precio</f:facet>
                	<h:inputText value="#{i.precio}" size="10"/>
-            </h:column>          
-            <h:column>
+            </p:column>          
+            <p:column filterBy="#{i.stock}" filterStyle="width:100px;" filterMatchMode="contains">
                	<f:facet name="header">Stock</f:facet>
                	<h:inputText value="#{i.stock}" size="10"/>               	
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column filterBy="#{i.estado}" filterStyle="width:100px;" filterMatchMode="contains">
                	<f:facet name="header">Estado</f:facet>
                	<h:inputText value="#{i.estado}" size="10"/>
-            </h:column>
-            <h:column>
+            </p:column>
+            <p:column>
                	<f:facet name="header">Editar</f:facet>               	
-            <h:commandLink value="Guardar" action="#{bodegaBean2.editarProducto(i)}"/>	
-            </h:column>
-            <h:column>
+            <p:commandLink value="Guardar" action="#{bodegaBean2.editarProducto(i)}"/>	
+            </p:column>
+            <p:column>
                	<f:facet name="header">Eliminar</f:facet>               	
                 <h:commandLink value="Eliminar" action="#{bodegaBean2.eliminarProducto(i)}"/>
-            </h:column>
-		</h:dataTable>				
+            </p:column>
+		</p:dataTable>				
 		</h:form>
 		<h:form>
 			<p>Nombre:</p>
