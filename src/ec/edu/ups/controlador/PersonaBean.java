@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +76,15 @@ public class PersonaBean implements Serializable{
     	telefono=persona.getTelefono();
     	cedula=persona.getCedula();
     	correo=persona.getCorreo();    	
+    }
+    
+    public void filtrarDatos() {
+    	personas=new ArrayList<Persona>();
+    	Persona per=ejbPersonaFacade.buscarPorCedula(cedula);
+    	personas.add(per);
+    	if(per==null ) {
+    		personas=ejbPersonaFacade.listarClientes();
+		}
     }
     
     public void editarPersona() {

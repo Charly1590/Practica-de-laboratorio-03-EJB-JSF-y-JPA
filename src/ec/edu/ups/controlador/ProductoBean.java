@@ -33,19 +33,19 @@ public class ProductoBean implements Serializable{
 	
 	@PostConstruct
 	public void init(){
-		pedidos.clear();
-		if(centinela){
+		/*pedidos.clear();
+		if(centinela){*/
 			productos=ejbProducto.findAll();
 			System.out.println("tyamana: "+productos.get(0).getBodegas().get(0).getNombre());
 			for(Producto producto : productos) {
 				Pedido pedido=new Pedido(producto, "");
 				pedidos.add(pedido);
 			}
-		}
+		//}
 	}
 	
 	public void buscarPorNombre() {
-		centinela=false;
+		//centinela=false;
 		productos=ejbProducto.buscarPorNombre(this.getNombreBusq());
 		pedidos=new ArrayList<Pedido>();
 		if(productos==null || productos.size() == 0) {
