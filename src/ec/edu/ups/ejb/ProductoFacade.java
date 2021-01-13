@@ -25,9 +25,9 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     
     public List<Producto> buscarPorNombre (String nombre) {
     	List<Producto> productos=new ArrayList<Producto>();
-    	String consulta = "Select p From Producto p Where p.nombre=:nombre";
+    	String consulta = "Select p From Producto p Where p.nombre like '%"+nombre+"%'";
     	try {
-    		productos= em.createQuery(consulta).setParameter("nombre", nombre).getResultList();
+    		productos= em.createQuery(consulta).getResultList();
     	}catch(Exception e) {
     		System.out.println(">>>Warning (ProductoFacade:buscarPorNombre: )"+e.getMessage());
     	}

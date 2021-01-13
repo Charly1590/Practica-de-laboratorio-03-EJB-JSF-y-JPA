@@ -26,8 +26,9 @@ public class FacturaCabeceraBean implements Serializable{
 	@EJB
 	private FacturaCabeceraFacade ejbFacturaCabecera;
 	
-	private List<FacturaCabecera> cabeceras = new ArrayList<FacturaCabecera>();
+	public static List<FacturaCabecera> cabeceras = new ArrayList<FacturaCabecera>();
 	private List<FacturaDetalle> detalles = new ArrayList<FacturaDetalle>();
+	private String cedula;
 	
 	@PostConstruct
 	public void init(){
@@ -42,6 +43,25 @@ public class FacturaCabeceraBean implements Serializable{
 		facCabecera.setEstado('C');
 		ejbFacturaCabecera.edit(facCabecera);
 		cabeceras=ejbFacturaCabecera.facturasCabeceraReves();
+	}
+	
+	public void filtrarFacturaCabecera() {
+		System.out.println("si esta entrando");
+		cabeceras=ejbFacturaCabecera.facturasCabeceraFiltrada(cedula);
+		if(cabeceras==null || cabeceras.size() == 0) {
+			System.out.println("no consigue nada");
+			cabeceras=ejbFacturaCabecera.facturasCabeceraReves();
+		}
+	}
+	
+	
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
 	public FacturaCabeceraFacade getEjbFacturaCabecera() {
