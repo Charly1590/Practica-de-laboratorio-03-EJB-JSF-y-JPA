@@ -37,11 +37,14 @@ public class PersonaFacade extends AbstractFacade<Persona> {
     	return persona;
     }
     
-    public Persona buscarClientePorCedula (String cedula) {
+    
+    public Persona inicioSesion (String correo, String password) {
     	Persona persona=null;
-    	String consulta = "Select per From Persona per Where per.cedula=:cedula and per.rol='C'";
+    	System.out.println("Intento Inicio");
+    	
+    	String consulta = "Select per From Persona per Where per.correo=:correo and per.password=:password";
     	try {
-    		persona= (Persona) em.createQuery(consulta).setParameter("cedula", cedula).getSingleResult();
+    		persona= (Persona) em.createQuery(consulta).setParameter("correo", correo).setParameter("password", password).getSingleResult();
     	}catch(Exception e) {
     		System.out.println(">>>Warning (PersonaFacade:buscarPorCedula: )"+e.getMessage());
     	}

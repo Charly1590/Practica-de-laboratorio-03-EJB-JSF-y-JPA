@@ -15,9 +15,11 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
+import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Categoria;
+import ec.edu.ups.entidades.Persona;
 import ec.edu.ups.entidades.Producto;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
@@ -39,6 +41,8 @@ public class BodegaBean implements Serializable{
 	
 	@EJB
 	private BodegaFacade ejbBodega;
+	@EJB
+	private PersonaFacade ejbPersona;
 	
 	public BodegaBean() {
 		
@@ -75,6 +79,9 @@ public class BodegaBean implements Serializable{
     private static ArrayList<Producto> listaArr  = new ArrayList<Producto>();
     
     private String lista = "nada aqui";
+	private String usuario;
+	private String contrasena;
+	
 
 
 	
@@ -297,6 +304,43 @@ public class BodegaBean implements Serializable{
 	public void setBodega(int bodega) {
 		this.bodega = bodega;
 	}
+	
+public String iniciarSecion() {
+		
+		System.out.println("Usuario: " + usuario );
+		
+		System.out.println("Contraseña: " + contrasena );
+		
+		
+		Persona sta = ejbPersona.inicioSesion(usuario, contrasena);
+		
+		if (sta != null && sta.getRol() == 'A') {
+			return "inicioAdmin";
+		}else if (sta != null) {
+			return "inicioUsuario";
+		}
+		
+		return null;
+		
+		
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	
 	
 }
 

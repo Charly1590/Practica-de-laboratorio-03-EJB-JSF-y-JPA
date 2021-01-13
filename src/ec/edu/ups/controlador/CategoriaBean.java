@@ -11,7 +11,9 @@ import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
+import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.entidades.Categoria;
+import ec.edu.ups.entidades.Persona;
 import ec.edu.ups.entidades.Producto;
 
 
@@ -33,7 +35,9 @@ public class CategoriaBean implements Serializable {
     private String text = "";
     
     
+    private String usuario;
     
+    private String contrasena;
     
     private ArrayList<Producto> listaArr ;
     
@@ -57,6 +61,9 @@ public class CategoriaBean implements Serializable {
 	
 	@EJB
 	private ProductoFacade ejbProducto;
+	
+	@EJB
+	private PersonaFacade ejbPersona;
 	
 	public CategoriaBean() {
 		
@@ -247,5 +254,47 @@ public class CategoriaBean implements Serializable {
 	}
 	
 
+	public String iniciarSecion() {
+		
+		System.out.println("Usuario: " + usuario );
+		
+		System.out.println("Contraseña: " + contrasena );
+		
+		
+		Persona sta = ejbPersona.inicioSesion(usuario, contrasena);
+		
+		if (sta != null && sta.getRol() == 'A') {
+			return "inicioAdmin";
+		}else if (sta != null) {
+			return "inicioUsuario";
+		}
+		
+		return null;
+		
+		
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -76,6 +76,17 @@
 			<to-view-id>/menuBodega3.xhtml</to-view-id>
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>inicioAdmin</from-outcome>
+			<to-view-id>/Administrador/GestionarBodegas.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inicioUsuario</from-outcome>
+			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
+		</navigation-case>
+		
+		
 	</navigation-rule>
 	
 	<navigation-rule>
@@ -96,6 +107,18 @@
 			<from-outcome>bodega3</from-outcome>
 			<to-view-id>/menuBodega3.xhtml</to-view-id>
 		</navigation-case>
+		
+		
+		<navigation-case>
+			<from-outcome>inicioAdmin</from-outcome>
+			<to-view-id>/Administrador/GestionarBodegas.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inicioUsuario</from-outcome>
+			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
+		</navigation-case>
+		
 		
 	</navigation-rule>
 	
@@ -118,6 +141,17 @@
 			<to-view-id>/menuBodega3.xhtml</to-view-id>
 		</navigation-case>
 		
+		
+		<navigation-case>
+			<from-outcome>inicioAdmin</from-outcome>
+			<to-view-id>/Administrador/GestionarBodegas.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inicioUsuario</from-outcome>
+			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
+		</navigation-case>
+		
 	</navigation-rule>
 	
 	<navigation-rule>
@@ -137,6 +171,17 @@
 		<navigation-case>
 			<from-outcome>bodega2</from-outcome>
 			<to-view-id>/menuBodega2.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		<navigation-case>
+			<from-outcome>inicioAdmin</from-outcome>
+			<to-view-id>/Administrador/GestionarBodegas.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inicioUsuario</from-outcome>
+			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
 		</navigation-case>
 		
 	</navigation-rule>

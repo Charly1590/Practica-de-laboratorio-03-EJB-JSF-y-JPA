@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 
 
@@ -138,36 +139,29 @@
             
             
             <!-- Login -->
-            <form>
-            
+             <!-- Login -->
+            <h:form>
 
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Usuario"/>
+                <h:inputText id="text" value="#{bodegaBean.usuario}"  class="form-control"  p:placeholder="Usuario"/>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="now-ui-icons users_single-02"></i>
                   </div>
                 </div>
               </div>
-              
               <br />
-              
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Contraseña"/>
+                <h:inputSecret id="contra" value="#{bodegaBean.contrasena}" type="password"  class="form-control" p:placeholder="Contraseña"/>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="now-ui-icons objects_key-25"></i>
                   </div>
                 </div>
               </div>
-              
               <br />
-
-              <input class="btn btn-primary btn-block" type="button" onclick="Metodo Login" value="Iniciar sesion" /> 
-              
-            </form>
-            
-   
+              <h:commandButton class="btn btn-primary btn-block" value="Iniciar sesion" action="#{bodegaBean.iniciarSecion()}"/>
+            </h:form>
           </div>
         </div>
       </nav>
@@ -221,7 +215,7 @@
 			
 			
 
-              <h:inputText id="text" value="#{bodegaBean.text}" type="text"  class="form-control" placeholder="Busqueda"/>
+              <h:inputText id="text" value="#{bodegaBean.text}" type="text"  class="form-control" p:placeholder="Busqueda"/>
 
               </div>
               
