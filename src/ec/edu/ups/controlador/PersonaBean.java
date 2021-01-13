@@ -68,6 +68,43 @@ public class PersonaBean implements Serializable{
     	personas=ejbPersonaFacade.listarClientes();
     }
     
+    public void cargarDatosEditarPersona(Persona persona) {
+    	nombre=persona.getNombre();
+    	apellido=persona.getApellido();
+    	direccion=persona.getDireccion();
+    	telefono=persona.getTelefono();
+    	cedula=persona.getCedula();
+    	correo=persona.getCorreo();    	
+    }
+    
+    public void editarPersona() {
+    	System.out.println("siquiera llega "+cedula);
+    	if(nombre!=null && nombre.equals("")!=true) {
+    		Persona persona = ejbPersonaFacade.buscarPorCedula(cedula);
+    		persona.setNombre(nombre);
+    		persona.setApellido(apellido);
+    		persona.setDireccion(direccion);
+    		persona.setTelefono(telefono);
+    		persona.setCorreo(correo);
+    		System.out.println(persona.getId());
+        	ejbPersonaFacade.edit(persona);
+        	nombre="";
+        	apellido="";
+        	direccion="";
+        	telefono="";
+        	cedula="";
+        	correo="";
+        	personas=ejbPersonaFacade.listarClientes();
+    	} 	
+    }
+    
+    public void eliminarUsuario(Persona persona) {
+    	Persona persona2 = ejbPersonaFacade.buscarPorCedula(persona.getCedula());
+    	System.out.println(persona2.getId());
+    	ejbPersonaFacade.remove(persona2);
+    	personas=ejbPersonaFacade.listarClientes();
+    }
+    
 
 	public List<Persona> getPersonas() {
 		return personas;

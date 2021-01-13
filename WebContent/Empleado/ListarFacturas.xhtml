@@ -120,11 +120,12 @@
 				
 				
 				#contenedorDetalles{
+					position: fixed;
 					float: left;
 					width: 40%;
 				    height: auto;
-					margin-left: 3%;
-					margin-top: 2%;
+					margin-left: 55%;
+					margin-top: 12%;
 				}
 						
 			</style>
@@ -141,7 +142,7 @@
 				<li><a>Gestionar Clientes</a>
 					<ul>
 						<li><h:commandLink value="Crear Cliente" action="#{navigator.reglaRedir('crearCliente')}" /></li>
-						<li><h:commandLink value="Listar Clientes" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+						<li><h:commandLink value="Listar Clientes"  action="#{navigator.reglaRedir('listarClientes')}" /></li>
 					</ul>
 				</li>
 				<li><a href="">Cerrar Sesion</a></li>
@@ -183,6 +184,11 @@
 			   		<p:column>
 		   				<f:facet name="header" id="proid">Detalle</f:facet>
 		   				<p:commandButton value="Ver" action="#{facturaCabeceraBean.sacarDetalles(cabF)}" update="facturaDetalle">
+			    		</p:commandButton>
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Detalle</f:facet>
+		   				<p:commandButton value="Cancelar" action="#{facturaCabeceraBean.cancelarFactura(cabF)}" update="facturaCabecera facturaDetalle">
 			    		</p:commandButton>
 		   			</p:column>
 		   		</p:dataTable>

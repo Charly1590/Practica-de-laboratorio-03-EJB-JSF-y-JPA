@@ -1,11 +1,15 @@
 package ec.edu.ups.ejb;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ec.edu.ups.entidades.FacturaCabecera;
+import ec.edu.ups.entidades.Persona;
 
 @Stateless
 public class FacturaCabeceraFacade extends AbstractFacade<FacturaCabecera> {
@@ -21,5 +25,17 @@ public class FacturaCabeceraFacade extends AbstractFacade<FacturaCabecera> {
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    public List<FacturaCabecera> facturasCabeceraReves(){
+    	List<FacturaCabecera> cabeceras=new ArrayList<FacturaCabecera>();
+    	String consulta = "Select fC From FacturaCabecera fC  where fc.estado='A' order by fc.id desc";
+    	try {
+    		cabeceras = em.createQuery(consulta).getResultList();
+    	}catch(Exception e) {
+    		System.out.println(">>>Warning (PersonaFacade:buscarPorCedula: )"+e.getMessage());
+    	}
+    	return cabeceras;
+    }
+    
 }
 

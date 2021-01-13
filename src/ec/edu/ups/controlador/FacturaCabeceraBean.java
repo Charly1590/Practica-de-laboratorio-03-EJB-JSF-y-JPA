@@ -31,11 +31,17 @@ public class FacturaCabeceraBean implements Serializable{
 	
 	@PostConstruct
 	public void init(){
-		cabeceras=ejbFacturaCabecera.findAll();
+		cabeceras=ejbFacturaCabecera.facturasCabeceraReves();
 	}
 	
 	public void sacarDetalles(FacturaCabecera facCabecera) {
 		detalles=facCabecera.getFacturasDetalle();
+	}
+	
+	public void cancelarFactura(FacturaCabecera facCabecera) {
+		facCabecera.setEstado('C');
+		ejbFacturaCabecera.edit(facCabecera);
+		cabeceras=ejbFacturaCabecera.facturasCabeceraReves();
 	}
 
 	public FacturaCabeceraFacade getEjbFacturaCabecera() {

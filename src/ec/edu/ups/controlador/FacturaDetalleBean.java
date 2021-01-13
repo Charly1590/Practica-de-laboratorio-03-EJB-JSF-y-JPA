@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,6 +62,7 @@ public class FacturaDetalleBean implements Serializable{
 	
 	public void addDetallesFac(Pedido pedido) {
 		if(comprobarProduct(Integer.parseInt(pedido.getCantidad()),pedido.getProducto())) {
+			DecimalFormat df = new DecimalFormat("#.00");
 			cantidad=pedido.getCantidad();
 			float total2=Integer.parseInt(cantidad)*pedido.getProducto().getPrecio();
 			this.setTotal(total2);
@@ -69,6 +71,11 @@ public class FacturaDetalleBean implements Serializable{
 			subtotal=subtotal+total;
 			iva=subtotal*(float)0.12;
 			totalFinal=subtotal+iva;
+			
+			subtotal=(float) (Math.round(subtotal*100d)/100d);
+			iva=(float) (Math.round(iva*100d)/100d);
+			totalFinal=(float) (Math.round(totalFinal*100d)/100d);
+			
 		}
 	}
 	
