@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<h:head>
-	    <title> Bodegas</title>
+	    <title>Informe General</title>
 	    <style type="text/css">
 				
 				* {
@@ -121,64 +121,24 @@
 	</nav>
 	<h:body>
 		<h:form>	
-		<h:dataTable value="#{bodegaBean2.bodegas}" var="o" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
-               	<f:facet name="header">Nombre</f:facet>#{o.nombre}               	
-            </h:column>
-            <h:column>
-               	<f:facet name="header">Direccion</f:facet>#{o.direccion}               	
-            </h:column>
-            <h:column>
-               	<f:facet name="header">Ciudad</f:facet>#{o.ciudad.nombre}               	
-            </h:column>
-            <h:column>
-            	<f:facet name="header">Eleccion</f:facet>
-               	<h:commandButton value="Visualizar #{o.id}"  action="#{bodegaBean2.setBodegaActual(o.id-1)}"> <f:ajax render="tablaProductos"/></h:commandButton>               	       	               	           	
-            </h:column>                       		
-		</h:dataTable>
-		</h:form>
-		<h:form id="tablaProductos">	
-		<h:dataTable  value="#{bodegaBean2.productosBodega}" var="i" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar" >			
+		<h:dataTable value="#{bodegaBean2.todos}" var="i" styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			<h:column>
                	<f:facet name="header">Nombre</f:facet>
-               	<h:inputText value="#{i.nombre}" size="10"/>               	
+               	<h:outputText value="#{i.nombre}" size="10"/>               	
             </h:column>
             <h:column>
                	<f:facet name="header">Precio</f:facet>
-               	<h:inputText value="#{i.precio}" size="10"/>
+               	<h:outputText value="#{i.precio}" size="10"/>
             </h:column>          
             <h:column>
                	<f:facet name="header">Stock</f:facet>
-               	<h:inputText value="#{i.stock}" size="10"/>               	
+               	<h:outputText value="#{i.stock}" size="10"/>               	
             </h:column>
             <h:column>
                	<f:facet name="header">Estado</f:facet>
-               	<h:inputText value="#{i.estado}" size="10"/>
-            </h:column>
-            <h:column>
-               	<f:facet name="header">Editar</f:facet>               	
-            <h:commandLink value="Guardar" action="#{bodegaBean2.editarProducto(i)}"/>	
-            </h:column>
-            <h:column>
-               	<f:facet name="header">Eliminar</f:facet>               	
-                <h:commandLink value="Eliminar" action="#{bodegaBean2.eliminarProducto(i)}"/>
-            </h:column>
-		</h:dataTable>				
-		</h:form>
-		<h:form>
-			<p>Nombre:</p>
-			<h:inputText value="#{bodegaBean2.nombreProducto}" size="10"/>
-			<p>Precio:</p>
-			<h:inputText value="#{bodegaBean2.precioProducto}" size="10"/>
-			<p>Stock:</p>
-			<h:inputText value="#{bodegaBean2.stockProducto}" size="10"/>
-			<p>Estado:</p>
-			<h:inputText value="#{bodegaBean2.estadoProducto}" size="10"/>
-			<p>Categoria:</p>
-			<h:selectOneListbox value="#{bodegaBean2.categoria}">
-               		<f:selectItems value="#{bodegaBean2.nombreCategoria}"/>
-               	</h:selectOneListbox>
-			<h:commandButton value="Añadir" action="#{bodegaBean2.crearProducto}"/>			
+               	<h:outputText value="#{i.estado}" size="10"/>
+            </h:column>                                   		
+		</h:dataTable>
 		</h:form>					
 	</h:body>
 </html>

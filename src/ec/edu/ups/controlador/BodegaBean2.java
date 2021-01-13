@@ -1,6 +1,6 @@
 package ec.edu.ups.controlador;
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -132,14 +132,40 @@ public class BodegaBean2 implements Serializable{
 	}
 	public Categoria buscarCategoria(String nombre) {
 		int salida=0;		
-		for(int i=0;i<this.getCategoriasBodega().size();i++) {
-			System.out.println("Categoria!!"+this.getCategoriasBodega().get(i).getNombre());
-			if(this.getCategoriasBodega().get(i).getNombre()==nombre) {
+		for(int i=0;i<this.getCategoriasBodega().size();i++) {			
+			if(this.getCategoriasBodega().get(i).getNombre().equals(nombre)) {
 				salida=i;
 			}
-		}
-		System.out.println(this.getCategoriasBodega().get(salida).getNombre());
+		}		
 		return this.getCategoriasBodega().get(salida);
 	}
-	
+	public ArrayList<Producto> getTodos() {
+		ArrayList<Producto> stos = new ArrayList<Producto>();				
+		for (int i = 0; i < bodegas.size(); i++) {								
+			for (Producto producto : bodegas.get(i).getProductos()) {
+				if(!stos.contains(producto)) {
+					Producto aux=new Producto(1000, producto.getNombre(), producto.getPrecio(), 0, producto.getEstado(), producto.getCategoria());					
+					stos.add(aux);
+				}					
+			}			
+		}		
+		for (int i = 0; i < bodegas.size(); i++) {
+			Bodega actual= bodegas.get(i);
+			for(int j=0;j<stos.size();j++) {
+				List<Producto> listaActual=actual.getProductos();
+				Producto productoActual=stos.get(j);
+				for(int k=0;k<listaActual.size();k++) {
+					if(listaActual.get(k).getNombre().equals(productoActual.getNombre())) {
+						System.out.println("Stock Bodega: "+listaActual.get(k).getStock());
+						System.out.println("Stock lista: "+stos.get(j).getStock());
+						stos.get(j).setStock(stos.get(j).getStock() + listaActual.get(k).getStock());
+					}
+				}
+				
+			}
+			
+		}
+		return stos;
+				
+	}	
 }
