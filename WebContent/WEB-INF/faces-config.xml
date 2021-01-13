@@ -18,7 +18,11 @@
 	   <navigation-case> 
 	      <from-outcome>crearCliente</from-outcome> 
 	      <to-view-id>/Empleado/CrearUsuario.xhtml</to-view-id> 
-	   </navigation-case> 
+	   </navigation-case>
+	   <navigation-case> 
+	      <from-outcome>listarClientes</from-outcome> 
+	      <to-view-id>/Empleado/ListarClientes.xhtml</to-view-id> 
+	   </navigation-case>  
 	</navigation-rule> 
 	
 	<navigation-rule> 
@@ -31,6 +35,10 @@
 	      <from-outcome>crearCliente</from-outcome> 
 	      <to-view-id>/Empleado/CrearUsuario.xhtml</to-view-id> 
 	   </navigation-case> 
+	   <navigation-case> 
+	      <from-outcome>listarClientes</from-outcome> 
+	      <to-view-id>/Empleado/ListarClientes.xhtml</to-view-id> 
+	   </navigation-case>  
 	</navigation-rule> 
 	
 	<navigation-rule> 
@@ -43,6 +51,10 @@
 	      <from-outcome>crearCliente</from-outcome> 
 	      <to-view-id>/Empleado/CrearUsuario.xhtml</to-view-id> 
 	   </navigation-case>
+	   <navigation-case> 
+	      <from-outcome>listarClientes</from-outcome> 
+	      <to-view-id>/Empleado/ListarClientes.xhtml</to-view-id> 
+	   </navigation-case>  
 	</navigation-rule> 
 	
 	<navigation-rule> 
@@ -55,7 +67,27 @@
 	      <from-outcome>listarFactura</from-outcome> 
 	      <to-view-id>/Empleado/ListarFacturas.xhtml</to-view-id> 
 	   </navigation-case>
+	   <navigation-case> 
+	      <from-outcome>listarClientes</from-outcome> 
+	      <to-view-id>/Empleado/ListarClientes.xhtml</to-view-id> 
+	   </navigation-case>  
 	</navigation-rule> 
+	
+	<navigation-rule> 
+	   <from-view-id>/Empleado/ListarClientes.xhtml</from-view-id> 
+	   <navigation-case> 
+	      <from-outcome>crearFactura</from-outcome> 
+	      <to-view-id>/Empleado/CrearFactura.xhtml</to-view-id> 
+	   </navigation-case> 
+	   <navigation-case> 
+	      <from-outcome>listarFactura</from-outcome> 
+	      <to-view-id>/Empleado/ListarFacturas.xhtml</to-view-id> 
+	   </navigation-case>
+	   <navigation-case> 
+	      <from-outcome>crearCliente</from-outcome> 
+	      <to-view-id>/Empleado/CrearUsuario.xhtml</to-view-id> 
+	   </navigation-case>
+	</navigation-rule>
 	
 	<navigation-rule>
 	

@@ -142,7 +142,7 @@
 				<li><a>Gestionar Clientes</a>
 					<ul>
 						<li><h:commandLink value="Crear Cliente" action="#{navigator.reglaRedir('crearCliente')}" /></li>
-						<li><h:commandLink value="Listar Clientes" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+						<li><h:commandLink value="Listar Clientes"  action="#{navigator.reglaRedir('listarClientes')}" /></li>
 					</ul>
 				</li>
 				<li><a href="">Cerrar Sesion</a></li>
@@ -155,41 +155,43 @@
 	    	<h:form>
 		    	<h3>Buscar por cedula</h3>
 		    	<p:inputText id="ced" value="#{buscarFacturaController.cedula}" type="text"/>
-		    	<p:commandButton value="Buscar" action="#{buscarFacturaController.buscarPorCedula}"  update="clientes"/>
+		    	<p:commandButton value="Buscar" action="#{buscarFacturaController.buscarPorCedula}"  update="formClientes"/>
 		    </h:form>
 	    </div>
 	   	
    		<div id="contenedorClientes">
-   			<h:form id="clientes">
-	   			<p:dataTable id="clientes" value="#{personaBean.personas}" var="per" styleClass="tabla" 
-		   			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-		   			<p:column>
-		   				<f:facet name="header" id="proid">Nombre</f:facet>#{per.nombre}
-		   			</p:column>
-		   			<p:column>
-		   				<f:facet name="header" id="proid">Persona</f:facet>#{per.apellido}
-		   			</p:column>
-		   			<p:column>
-		   				<f:facet name="header" id="proid">Cedula</f:facet>#{per.cedula}
-		   			</p:column>
-		   			<p:column>
-		   				<f:facet name="header" id="proid">Direccion</f:facet>#{per.direccion}
-		   			</p:column>
-		   			<p:column>
-		   				<f:facet name="header" id="proid">Telefono</f:facet>#{per.telefono}
-		   			</p:column>
-		   			<p:column>
-		   				<p:commandButton value= "editar"></p:commandButton>
-		   			</p:column>
-		   			<p:column>
-		   				<p:commandButton value="eliminar"></p:commandButton>
+   			<h:form id="formClientes">
+	   			<p:dataTable id="tablaClientes" value="#{personaBean.personas}" var="per" styleClass="tabla"
+						headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			   			<p:column>
+			   				<f:facet name="header" id="proid">Nombre</f:facet>#{per.nombre}
+			   			</p:column>
+			   			<p:column>
+			   				<f:facet name="header" id="proid">Persona</f:facet>#{per.apellido}
+			   			</p:column>
+			   			<p:column>
+			   				<f:facet name="header" id="proid">Cedula</f:facet>#{per.cedula}
+			   			</p:column>
+			   			<p:column>
+			   				<f:facet name="header" id="proid">Direccion</f:facet>#{per.direccion}
+			   			</p:column>
+			   			<p:column>
+			   				<f:facet name="header" id="proid">Telefono</f:facet>#{per.telefono}
+			   			</p:column>
+			   			<p:column>
+		   					<p:commandButton value= "editar" actionListener="#{personaBean.cargarDatosEditarPersona(per)}" update="editarUsuario">
+		   					</p:commandButton>
+			   			</p:column>
+			   			<p:column>
+			   				<p:commandButton value="eliminar" actionListener="#{personaBean.eliminarUsuario(per)}" update="formClientes">
+			   				</p:commandButton>
 		   			</p:column>
 		   		</p:dataTable>
 	   		</h:form>
    		</div>
 	    
 	    <div id="central">
-			<h:form id="crearUsuario">
+			<h:form id="editarUsuario">
 				<p:panelGrid columns="2">
 		    		<h3>Nombre: </h3>
 					<p:inputText id="nombre" value="#{personaBean.nombre}" cols="2" />
@@ -203,8 +205,9 @@
 		    		<p:inputText id="telefono" value="#{personaBean.telefono}" cols="2" />
 		    		<h3>Correo: </h3>
 		    		<p:inputText id="correo" value="#{personaBean.correo}" cols="2" />
-		    		<h3>Agregar Cliente: </h3>
-		    		<p:commandButton value="Aceptar" action="#{personaBean.agregarPersona}" update="crearUsuario"/>
+		    		<h3>Modificar Cliente: </h3>
+		    		<p:commandButton value="Aceptar" actionListener="#{personaBean.editarPersona}" update="formClientes editarUsuario">
+		    		</p:commandButton>
 	    		</p:panelGrid>
 			</h:form>
 		</div>

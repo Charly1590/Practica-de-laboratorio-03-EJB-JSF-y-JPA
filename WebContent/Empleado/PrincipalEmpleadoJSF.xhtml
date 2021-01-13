@@ -67,22 +67,22 @@
 		</style>
 </h:head>
 <h:body>
-    <h:form id="formGestionClientes">
-    	<ul class="nav">
-			<li><a>Gestionar Facturas</a>
-				<ul>
-					<li><h:commandLink value="Crear Factura" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-					<li><h:commandLink value="Listar Facturas" action="#{navigator.reglaRedir('listarFactura')}" /></li>
-				</ul>
-			</li>
-			<li><a>Gestionar Clientes</a>
-				<ul>
-					<li><h:commandLink value="Crear Cliente" action="#{navigator.reglaRedir('crearCliente')}" /></li>
-					<li><h:commandLink value="Listar Clientes" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
-				</ul>
-			</li>
-			<li><a href="">Cerrar Sesion</a></li>
-		</ul>
-    </h:form>
+   <h:form id="formGestionClientes">
+	    	<ul class="nav">
+				<li><a>Gestionar Facturas</a>
+					<ul>
+						<li><h:commandLink value="Crear Factura" action="#{navigator.reglaRedir('CreacionFactura')}" /></li>
+						<li><h:commandLink value="Listar Facturas" action="#{navigator.reglaRedir('listarFactura')}" /></li>
+					</ul>
+				</li>
+				<li><a>Gestionar Clientes</a>
+					<ul>
+						<li><h:commandLink value="Crear Cliente" action="#{navigator.reglaRedir('crearCliente')}" /></li>
+						<li><h:commandLink value="Listar Clientes"  action="#{navigator.reglaRedir('listarClientes')}" /></li>
+					</ul>
+				</li>
+				<li><a href="">Cerrar Sesion</a></li>
+			</ul>
+	    </h:form>
 </h:body>
 </html>
