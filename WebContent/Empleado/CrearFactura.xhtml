@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 
@@ -70,8 +74,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 
-                                        <h:commandLink class="dropdown-item" value="Crear Cliente" action="#{navigator.reglaRedir('CreacionFactura')}" />
-                                        <h:commandLink class="dropdown-item" value="Listar Clientes" action="#{navigator.reglaRedir('CreacionFactura')}" />
+                                        <h:commandLink class="dropdown-item" value="Crear Cliente" action="#{navigator.reglaRedir('crearCliente')}" />
+                                        <h:commandLink class="dropdown-item" value="Listar Clientes" action="#{navigator.reglaRedir('listarClientes')}" />
 
                                     </div>
                                 </li>
@@ -98,189 +102,130 @@
             </div>
             <div class="content">
 
-
-
-
                 <div class="row">
+                
                     <div class="col-md-6">
+                    
                         <div class="card  card-tasks">
+                        
                             <div class="card-header ">
-                                <h5 class="card-category">Backend development</h5>
-                                <h4 class="card-title">Tasks</h4>
+                            
+                                <h5 class="card-category">Productos a añadir a la factura</h5>
+                                
+                                
                             </div>
+                            
+                            
                             <div class="card-body ">
-                                <div class="table-full-width table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" />
-                              <span class="form-check-sign"></span>
-                            </label>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left">Sign contract for "What are conference organizers afraid of?"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                          </button>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox"/>
-                              <span class="form-check-sign"></span>
-                            </label>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left">Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                          </button>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" />
-                              <span class="form-check-sign"></span>
-                            </label>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left">Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                </td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                          </button>
-                                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer ">
-
-                                <div class="stats">
-                                    <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-                                </div>
-                            </div>
+                            
+	                            <h:form id="fa1">
+									<div id="buscarProdFac">
+										<h3>Buscar por nombre</h3>
+										<p:inputText class="form-control" id="nombreBuscar" value="#{productoBean.nombreBusq}" type="text"></p:inputText>
+										<p:commandButton class="btn btn-primary btn-block" value="Buscar" action="#{productoBean.buscarPorNombre}" update="fa1">
+										</p:commandButton>
+										<p></p>
+									</div>
+								    <div id="contenedorProductos">
+								    	<p:dataTable id="tablaProd" value="#{productoBean.pedidos}" var="ped"
+											 headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+											<p:column headerText="Id">
+							                	<h:outputText value="#{ped.producto.id}"/>
+							                </p:column>
+							            	<p:column headerText="Nombre">
+							                	<h:outputText value="#{ped.producto.nombre}"/>
+							                </p:column>
+							                <p:column headerText="Stock">
+								                <h:outputText value="#{ped.producto.stock}"/>
+							            	</p:column>
+							                <p:column headerText="Bodega">
+							                	<h:outputText value="#{ped.producto.bodegas.get(0).nombre}" />
+							                </p:column>
+								    		<p:column headerText="Cantidad a Pedir">
+								                <p:inputText class="form-control" id="cantidad" name="header" value="#{ped.cantidad}" type="text"></p:inputText>
+							            	</p:column> 
+							            	<p:column headerText="">
+							            		<p:commandButton class="btn-primary" value="Agregar" actionListener="#{facturaDetalleBean.addDetallesFac(ped)}" update="fa1 fa3">
+							            		</p:commandButton>
+							            	</p:column>
+								    	</p:dataTable>
+								    </div>   
+								  </h:form> 
+	                            
+                            
+                            
+                            
+                            </div> 
+                            
+                            
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-category">All Persons List</h5>
-                                <h4 class="card-title"> Employees Stats</h4>
+                                <h5 class="card-category">Busqueda de cliente por cedula</h5>
+                                
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Country
-                                            </th>
-                                            <th>
-                                                City
-                                            </th>
-                                            <th class="text-right">
-                                                Salary
-                                            </th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    Dakota Rice
-                                                </td>
-                                                <td>
-                                                    Niger
-                                                </td>
-                                                <td>
-                                                    Oud-Turnhout
-                                                </td>
-                                                <td class="text-right">
-                                                    $36,738
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Minerva Hooper
-                                                </td>
-                                                <td>
-                                                    Curaçao
-                                                </td>
-                                                <td>
-                                                    Sinaai-Waas
-                                                </td>
-                                                <td class="text-right">
-                                                    $23,789
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Sage Rodriguez
-                                                </td>
-                                                <td>
-                                                    Netherlands
-                                                </td>
-                                                <td>
-                                                    Baileux
-                                                </td>
-                                                <td class="text-right">
-                                                    $56,142
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Doris Greene
-                                                </td>
-                                                <td>
-                                                    Malawi
-                                                </td>
-                                                <td>
-                                                    Feldkirchen in Kärnten
-                                                </td>
-                                                <td class="text-right">
-                                                    $63,542
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Mason Porter
-                                                </td>
-                                                <td>
-                                                    Chile
-                                                </td>
-                                                <td>
-                                                    Gloucester
-                                                </td>
-                                                <td class="text-right">
-                                                    $78,615
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            
+                            <div id="contenedorFactura">
+		  
+		  
+		  <h:form id="fa2"> 
+				<h3>Buscar Cliente</h3>
+				<p></p>
+				<h:inputText class="form-control" id="cedulaBuscar" value="#{personaBean.cedula}" type="text"></h:inputText>
+				<h:commandButton class="btn btn-primary btn-block" value="buscarPersona" action="#{personaBean.buscarPersonaCedula}">
+					<f:ajax execute="cedulaBuscar" render="salidaNombre salidaApellido salidaCedula salidaTelefono salidaDireccion" />
+				</h:commandButton>
+				<p></p>
+				<h:outputLabel for="salidaNombre" value="Nombre:" ></h:outputLabel>
+				<h:inputText class="form-control" id="salidaNombre" value="#{personaBean.nombre}"></h:inputText>
+				<p></p>
+		        <h:outputLabel for="salidaApellido" value="Apellido:"></h:outputLabel>
+		        <h:inputText class="form-control" id="salidaApellido" value="#{personaBean.apellido}"></h:inputText>
+		        <p></p>
+		        <h:outputLabel for="salidaTelefono" value="Telefono:" ></h:outputLabel>
+		        <h:inputText class="form-control" id="salidaTelefono" value="#{personaBean.telefono}"></h:inputText>
+		        <p></p>
+		        <h:outputLabel for="salidaDireccion" value="Direccion:" ></h:outputLabel>
+		        <h:inputText class="form-control" id="salidaDireccion" value="#{personaBean.direccion}"></h:inputText>
+		        <p></p>
+		  </h:form>
+		  <h:form id="fa3">    
+		        <div id="detalleFactura">
+	        		<p:dataTable id="tablaDetalle" value="#{facturaDetalleBean.detallesFac}" var="detalle" styleClass="tabla"
+						headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+						<p:column>
+		                	<f:facet name="header" id="prodId">Producto</f:facet>#{detalle.producto.nombre}
+		                </p:column>
+		            	<p:column>
+		                	<f:facet name="header" id="prodNombre">Precio</f:facet>#{detalle.producto.precio}
+		                </p:column>
+		                <p:column>
+			                <f:facet name="header" id="prodStock">Cantidad</f:facet>#{detalle.cantidad}
+		            	</p:column>
+		                <p:column>
+		                	<f:facet name="header" id="prodBodega">Total</f:facet>#{detalle.total}
+		                </p:column>
+			    	</p:dataTable>
+		        </div>
+		        <p></p>
+		        <p>
+		        <h:outputLabel for="salidaDireccion" value="Subtotal: #{facturaDetalleBean.subtotal}" ></h:outputLabel>
+		        </p>
+		        <p>
+		        <h:outputLabel for="salidaDireccion" value="IVA: #{facturaDetalleBean.iva}" ></h:outputLabel>
+		        </p>
+		        <h:outputLabel for="salidaDireccion" value="Total: #{facturaDetalleBean.totalFinal}" ></h:outputLabel>
+		         <p></p>
+		        <p:commandButton class="btn btn-primary btn-block" value="Realizar Factura" action="#{facturaDetalleBean.guardarFactura()}" update="fa1 fa2 fa3">
+				</p:commandButton>
+		</h:form>
+		</div>
+           </div>                 
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>

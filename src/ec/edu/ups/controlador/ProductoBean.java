@@ -33,6 +33,7 @@ public class ProductoBean implements Serializable{
 	
 	@PostConstruct
 	public void init(){
+		pedidos.clear();
 		if(centinela){
 			productos=ejbProducto.findAll();
 			System.out.println("tyamana: "+productos.get(0).getBodegas().get(0).getNombre());
