@@ -1,14 +1,15 @@
 package ec.edu.ups.controlador;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
+
 import javax.faces.annotation.FacesConfig;
+
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.BodegaFacade;
@@ -21,7 +22,7 @@ import ec.edu.ups.entidades.Producto;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@RequestScoped
+@ApplicationScoped
 public class BodegaBean2 implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -34,19 +35,19 @@ public class BodegaBean2 implements Serializable{
 	private ProductoFacade ejbProducto;
 	private List<Bodega> bodegas;
 	private int bodegaActual;	
-	private boolean editar=true;
 	private String nombreProducto;
 	private float precioProducto;
 	private int stockProducto;
 	private char estadoProducto;
+	private String categoria;
+	
 	
 	public BodegaBean2 () {
 		
 	}
-	
 	@PostConstruct
 	public void init(){
-		bodegas=ejbBodegas.findAll();
+		bodegas=ejbBodegas.findAll();		
 	}
 	public List<Bodega> getBodegas() {
 		return bodegas;
@@ -65,12 +66,12 @@ public class BodegaBean2 implements Serializable{
 	public List<Producto> getProductosBodega(){
 		return bodegas.get(bodegaActual).getProductos();
 	}
+	
 	public int getBodegaActual() {
 		return bodegaActual;
 	}
-	public String setBodegaActual(int bodegaActual) {
-		this.bodegaActual = bodegaActual;		
-		return null;
+	public void setBodegaActual(int bodegaActual) {
+		this.bodegaActual = bodegaActual;
 	}
 	public BodegaFacade getEjbBodegas() {
 		return ejbBodegas;
@@ -78,26 +79,16 @@ public class BodegaBean2 implements Serializable{
 	public void setEjbBodegas(BodegaFacade ejbBodegas) {
 		this.ejbBodegas = ejbBodegas;
 	}
-	public boolean isEditar() {
-		return editar;
-	}	
-
-	public String setEditar(boolean editar) {
-		this.editar = editar;
-		return null;
+	public void editarProducto(Producto p) {		
+		ejbProducto.edit(p);
 	}
-	public void cambiarEditar(Producto p) {
-		editar=!editar;		
-		ejbProducto.edit(p);			
-	}
-	public void crearProducto() {
-		System.out.println("Bodega Actual:"+bodegaActual);
-		Producto productoAuxiliar= new Producto(0,nombreProducto, precioProducto, stockProducto, estadoProducto,null);
+	public void crearProducto() {		
+		Producto productoAuxiliar= new Producto(0,nombreProducto, precioProducto, stockProducto, estadoProducto,buscarCategoria(categoria));		
 		ejbProducto.create(productoAuxiliar);		
 		bodegas.get(bodegaActual).addProductos(productoAuxiliar);
 		ejbBodegas.edit(bodegas.get(bodegaActual));
 	}
-	public void eliminarEditar(Producto p) {			
+	public void eliminarProducto(Producto p) {		
 		bodegas.get(bodegaActual).delelteProducto(p);
 		ejbBodegas.edit(bodegas.get(bodegaActual));
 		ejbProducto.remove(p);			
@@ -132,6 +123,49 @@ public class BodegaBean2 implements Serializable{
 			nombres[i]=bodegas.get(i).getNombre();
 		}
 		return nombres;
+	}	
+	public String getCategoria() {
+		return categoria;
 	}
-	
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public Categoria buscarCategoria(String nombre) {
+		int salida=0;		
+		for(int i=0;i<this.getCategoriasBodega().size();i++) {			
+			if(this.getCategoriasBodega().get(i).getNombre().equals(nombre)) {
+				salida=i;
+			}
+		}		
+		return this.getCategoriasBodega().get(salida);
+	}
+	public ArrayList<Producto> getTodos() {
+		ArrayList<Producto> stos = new ArrayList<Producto>();				
+		for (int i = 0; i < bodegas.size(); i++) {								
+			for (Producto producto : bodegas.get(i).getProductos()) {
+				if(!stos.contains(producto)) {
+					Producto aux=new Producto(1000, producto.getNombre(), producto.getPrecio(), 0, producto.getEstado(), producto.getCategoria());					
+					stos.add(aux);
+				}					
+			}			
+		}		
+		for (int i = 0; i < bodegas.size(); i++) {
+			Bodega actual= bodegas.get(i);
+			for(int j=0;j<stos.size();j++) {
+				List<Producto> listaActual=actual.getProductos();
+				Producto productoActual=stos.get(j);
+				for(int k=0;k<listaActual.size();k++) {
+					if(listaActual.get(k).getNombre().equals(productoActual.getNombre())) {
+						System.out.println("Stock Bodega: "+listaActual.get(k).getStock());
+						System.out.println("Stock lista: "+stos.get(j).getStock());
+						stos.get(j).setStock(stos.get(j).getStock() + listaActual.get(k).getStock());
+					}
+				}
+				
+			}
+			
+		}
+		return stos;
+				
+	}	
 }

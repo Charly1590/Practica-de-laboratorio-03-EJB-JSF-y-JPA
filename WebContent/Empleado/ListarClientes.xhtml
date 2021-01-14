@@ -123,8 +123,8 @@
                   <div id="filtros">
 	    	<h:form>
 		    	<h3>Buscar por cedula</h3>
-		    	<p:inputText class="form-control" id="ced" value="#{buscarFacturaController.cedula}" type="text"/>
-		    	<p:commandButton class=" btn-primary btn-block" value="Buscar" action="#{buscarFacturaController.buscarPorCedula}"  update="formClientes"/>
+		    	<p:inputText class="form-control" id="ced" value="#{personaBean.cedula}" type="text"/>
+		    	<p:commandButton class=" btn-primary btn-block" value="Buscar" action="#{personaBean.filtrarDatos}"  update="formClientes"/>
 		    	<p></p>
 		    </h:form>
 	    </div>
