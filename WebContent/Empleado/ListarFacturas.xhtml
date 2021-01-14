@@ -25,6 +25,13 @@
     <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <style type="text/css">
+    	#contenedorDetalles{
+			position: fixed;
+			width:90%;
+			margin-left: 52%;
+		}
+    </style>
 </h:head>
 
 <h:body>
@@ -128,7 +135,7 @@
 		   				<f:facet name="header" id="proid">Fecha</f:facet>#{cabF.fecha}
 		   			</p:column>
 		   			<p:column>
-		   				<f:facet name="header" id="proid">Cliente</f:facet>#{cabF.persona.getNombre()}
+		   				<f:facet name="header" id="proid">Cliente</f:facet>#{cabF.persona.getNombre()} #{cabF.persona.getApellido()}
 		   			</p:column>
 		   			<p:column>
 		   				<f:facet name="header" id="proid">Subtotal</f:facet>#{cabF.subtotal}
@@ -141,12 +148,12 @@
 		   			</p:column>
 			   		<p:column>
 		   				<f:facet name="header" id="proid">Detalle</f:facet>
-		   				<p:commandButton class="btn btn-primary btn-block" value="Ver" action="#{facturaCabeceraBean.sacarDetalles(cabF)}" update="facturaDetalle">
+		   				<p:commandButton class="btn-primary" value="Ver" action="#{facturaCabeceraBean.sacarDetalles(cabF)}" update="facturaDetalle">
 			    		</p:commandButton>
 		   			</p:column>
 		   			<p:column>
 		   				<f:facet name="header" id="proid">Detalle</f:facet>
-		   				<p:commandButton class="btn btn-primary btn-block" value="Cancelar" action="#{facturaCabeceraBean.cancelarFactura(cabF)}" update="facturaCabecera facturaDetalle">
+		   				<p:commandButton class="btn-primary" value="Cancelar" action="#{facturaCabeceraBean.cancelarFactura(cabF)}" update="facturaCabecera facturaDetalle">
 			    		</p:commandButton>
 		   			</p:column>
 		   		</p:dataTable>
@@ -161,12 +168,9 @@
             </div>
           </div>
           
-          
+         <div id="contenedorDetalles"> 
           <div class="col-md-6">
             <div class="card">
-            
-            
-            
             
               <div class="card-header">
                 <h4 class="card-title"> Detalles de la factura</h4>
@@ -176,7 +180,7 @@
               
               
               <h:form id="facturaDetalle">
-	   		<div id="contenedorDetalles">
+	   		<div>
 	   			<p:dataTable id="detalles" value="#{facturaCabeceraBean.detalles}" var="d" styleClass="tabla" 
 		   			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 		   			<p:column>
@@ -197,6 +201,7 @@
               </div>
             </div>
           </div>
+         </div> 
         </div>
       </div>
 

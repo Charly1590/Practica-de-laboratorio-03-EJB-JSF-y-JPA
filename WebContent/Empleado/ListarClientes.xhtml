@@ -134,10 +134,7 @@
 	   			<p:dataTable id="tablaClientes" value="#{personaBean.personas}" var="per" styleClass="tabla"
 						headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			   			<p:column>
-			   				<f:facet name="header" id="proid">Nombre</f:facet>#{per.nombre}
-			   			</p:column>
-			   			<p:column>
-			   				<f:facet name="header" id="proid">Persona</f:facet>#{per.apellido}
+			   				<f:facet name="header" id="proid">Cliente</f:facet>#{per.nombre} #{per.apellido}
 			   			</p:column>
 			   			<p:column>
 			   				<f:facet name="header" id="proid">Cedula</f:facet>#{per.cedula}
