@@ -23,31 +23,10 @@
 	  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 	  <link href="assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 	  
-
-	  
-	  
-	  
-	  
-	  
 </h:head>
 
 <h:body>
 
-<!-- 
-    <img id="logo" src="" alt="" />
-    
-    
-    <form id="formulario01"  action="Login" method="post">
-        <label for="correo">Correo: </label>
-        <input type="text" name="correo" placeholder="Ingrese su correo" />
-
-        <label for="password">Contraseña: </label>
-        <input type="password" name="password" placeholder="Ingrese su contraseña" /><br>
-        <input id="login" type="submit" value="Iniciar Sesion">
-
-    </form>
--->
-    
     <div class="wrapper ">
     <div class="sidebar" data-color="orange">
       <!--
@@ -148,7 +127,7 @@
                 </div>
               </div>
               <br />
-              <h:commandButton class="btn btn-primary btn-block" value="Iniciar sesion" action="#{categoriaBean.iniciarSecion()}"/>
+              <h:commandButton class="btn btn-primary btn-block" value="Iniciar sesion" action="#{categoriaBean.iniciarSecion() }"/>
             </h:form>
           </div>
         </div>
@@ -164,6 +143,8 @@
       <div class="panel-header panel-header-lg">
         <canvas id="bigDashboardChart"></canvas>
       </div>
+      
+      
       
       
       
@@ -234,16 +215,11 @@
           </div>
         </div>
       
-       
-      
-      <footer class="footer">
-
-      </footer>
     </div>
   </div>
  
  
-    
+      
 </h:body>
 
 </html>
