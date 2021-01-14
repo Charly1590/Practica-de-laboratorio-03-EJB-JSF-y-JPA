@@ -16,7 +16,6 @@ public class Navigator {
 		
 		if(page.equals("CreacionFactura")) {
 			return "crearFactura";
-			
 		}else if(page.equals("listarFactura")) {
 			return "listarFactura";
 		}else if(page.equals("crearCliente")) {
@@ -31,7 +30,16 @@ public class Navigator {
 			return "bodega2";
 		}else if(page.equals("bodega3")) {
 			return "bodega3";
+		}else if(page.equals("informeGeneral")) {
+			return "informeGeneral";
+		}else if(page.equals("gestionGodegas")) {
+			return "gestionGodegas";
+		}else if(page.equals("salir")) {
+			LoguinBean log=new LoguinBean();
+			log.logout();
+			return "salir";
 		}
+		
 		
 		return page;
 	}

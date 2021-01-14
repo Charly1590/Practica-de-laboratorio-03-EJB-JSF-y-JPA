@@ -2,9 +2,7 @@ package ec.edu.ups.controlador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -12,7 +10,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
+import ec.edu.ups.entidades.Categoria;
 import ec.edu.ups.entidades.Pedido;
 import ec.edu.ups.entidades.Producto;
 
@@ -30,11 +30,15 @@ public class ProductoBean implements Serializable{
 	@EJB
 	private ProductoFacade ejbProducto;
 	
+	@EJB
+	private CategoriaFacade ejbCategoria;
 	
-	@PostConstruct
+	
+	/*PostConstruct
 	public void init(){
-		/*pedidos.clear();
-		if(centinela){*/
+		ejbCategoria.findAll();
+		//pedidos.clear();
+		//if(centinela){
 			productos=ejbProducto.findAll();
 			System.out.println("tyamana: "+productos.get(0).getBodegas().get(0).getNombre());
 			for(Producto producto : productos) {
@@ -42,10 +46,18 @@ public class ProductoBean implements Serializable{
 				pedidos.add(pedido);
 			}
 		//}
-	}
+		//centinela=false;
+	}*/
 	
 	public void buscarPorNombre() {
-		//centinela=false;
+		List<Categoria> cat=ejbCategoria.findAll();
+		for(Categoria categoria: cat) {
+			List<Producto> productos=categoria.getProductos();
+			for(Producto prod : productos) {
+				System.out.println("Producto: "+prod.getNombre()+" Categoria: "+categoria.getNombre());
+			}
+		}
+		centinela=false;
 		productos=ejbProducto.buscarPorNombre(this.getNombreBusq());
 		pedidos=new ArrayList<Pedido>();
 		if(productos==null || productos.size() == 0) {

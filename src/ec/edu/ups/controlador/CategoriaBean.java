@@ -134,6 +134,7 @@ public class CategoriaBean implements Serializable {
 
 		       		System.out.println("Prod Actual: "+listaArr.get(i).getNombre());
 		       		stosTemp.add(listaArr.get(i));
+		       		
 		       	 }
 			}
     	}
@@ -220,14 +221,17 @@ public class CategoriaBean implements Serializable {
 		
 		System.out.println("Usuario: " + usuario );
 		
-		System.out.println("Contraseña: " + contrasena );
+		System.out.println("Contraseï¿½a: " + contrasena );
 		
 		
 		Persona sta = ejbPersona.inicioSesion(usuario, contrasena);
+		LoguinBean loguinBean=new LoguinBean();
 		
 		if (sta != null && sta.getRol() == 'A') {
+			loguinBean.login();
 			return "inicioAdmin";
 		}else if (sta != null) {
+			loguinBean.login();
 			return "inicioUsuario";
 		}
 		
