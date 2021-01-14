@@ -129,10 +129,10 @@
 								    <div id="contenedorProductos">
 								    	<p:dataTable id="tablaProd" value="#{productoBean.pedidos}" var="ped"
 											 headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-											<p:column headerText="Id">
+											<p:column  headerText="Id">
 							                	<h:outputText value="#{ped.producto.id}"/>
 							                </p:column>
-							            	<p:column headerText="Nombre">
+							            	<p:column  headerText="Nombre">
 							                	<h:outputText value="#{ped.producto.nombre}"/>
 							                </p:column>
 							                <p:column headerText="Stock">
