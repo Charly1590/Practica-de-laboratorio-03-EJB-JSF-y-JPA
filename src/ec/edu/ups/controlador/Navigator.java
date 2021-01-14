@@ -16,6 +16,7 @@ public class Navigator {
 		
 		if(page.equals("CreacionFactura")) {
 			return "crearFactura";
+			
 		}else if(page.equals("listarFactura")) {
 			return "listarFactura";
 		}else if(page.equals("crearCliente")) {
