@@ -49,28 +49,30 @@ public class PedidosCabecera {
 		if(pedCabecera.getEstado().equals("Finalizado")!=true) {
 			pedCabecera.setEstado(estado);
 			ejbPedidoCabecera.edit(pedCabecera);
-			if(estado.equals("Finalizado")) {
-				FacturaCabecera facturaCabecera = new FacturaCabecera(
-						0, 
-						new Date(), 
-						pedCabecera.getSubtotal(), 
-						pedCabecera.getTotal(), 
-						pedCabecera.getIva(), 
-						'A', 
-						pedCabecera.getPersona());
-				ejbFacturaCabecera.create(facturaCabecera);
-				List<FacturaDetalle> facturasDetalle = new ArrayList<FacturaDetalle>();
-				for(PedidoDetalle pD : pedCabecera.getPedidosDetale()) {
-					FacturaDetalle facturaDetalle = new FacturaDetalle(
+			if(pedCabecera.getEstado().equals("Receptado")==true) {
+				if(estado.equals("Receptado")) {
+					FacturaCabecera facturaCabecera = new FacturaCabecera(
 							0, 
-							pD.getCantidad(), 
-							pD.getTotal(), 
-							facturaCabecera, 
-							pD.getProducto());
-					facturasDetalle.add(facturaDetalle);
-					ejbFacturaDetalle.create(facturaDetalle);
+							new Date(), 
+							pedCabecera.getSubtotal(), 
+							pedCabecera.getTotal(), 
+							pedCabecera.getIva(), 
+							'A', 
+							pedCabecera.getPersona());
+					ejbFacturaCabecera.create(facturaCabecera);
+					List<FacturaDetalle> facturasDetalle = new ArrayList<FacturaDetalle>();
+					for(PedidoDetalle pD : pedCabecera.getPedidosDetale()) {
+						FacturaDetalle facturaDetalle = new FacturaDetalle(
+								0, 
+								pD.getCantidad(), 
+								pD.getTotal(), 
+								facturaCabecera, 
+								pD.getProducto());
+						facturasDetalle.add(facturaDetalle);
+						ejbFacturaDetalle.create(facturaDetalle);
+					}
+					
 				}
-				
 			}
 		}
 	}
