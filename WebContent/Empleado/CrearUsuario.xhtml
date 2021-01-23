@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:z="http://xmlns.jcp.org/jsf/passthrough">
-      <h:head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:z="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
 
 
     <meta charset="utf-8" />
@@ -22,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
-	<link href="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 
 
@@ -76,7 +71,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                        <h:commandLink class="dropdown-item" action="#{navigator.reglaRedir('salir')}">
+                                    <h:commandLink class="dropdown-item" action="#{navigator.reglaRedir('salir')}">
                                         <i class="now-ui-icons sport_user-run"></i></h:commandLink>
                                 </li>
                             </ul>
@@ -90,145 +85,145 @@
             <div class="panel-header panel-header-sm">
 
             </div>
-            
-            
-<div class="content">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">Añadir Cliente</h5>
-              </div>
-              <div class="card-body">
-                
-                
-                
-                <h:form id="crearUsuario">
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Empresa (Por defecto)</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Pal Hogar" value="Pal Hogar"/>
-                      </div>
+
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title">Añadir Cliente</h5>
+                            </div>
+                            <div class="card-body">
+
+
+
+                                <h:form id="crearUsuario">
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Empresa (Por defecto)</label>
+                                                <input type="text" class="form-control" disabled="" placeholder="Pal Hogar" value="Pal Hogar" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Nombre:</label>
+                                                <p:inputText id="nombre" class="form-control" value="#{personaBean.nombre}" cols="2" z:placeholder="Nombre" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Apellido:</label>
+                                                <p:inputText class="form-control" id="apellido" value="#{personaBean.apellido}" cols="2" z:placeholder="Apellido" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Cedula: </label>
+                                                <p:inputText class="form-control" id="cedula" value="#{personaBean.cedula}" cols="2" z:placeholder="Cedula" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                                <label>Direccion:</label>
+                                                <p:inputText class="form-control" id="direccion" value="#{personaBean.direccion}" cols="2" z:placeholder="Ej. Paute- Abdon Calderon y bahia San jose" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Telefono:</label>
+                                                <p:inputText class="form-control" id="telefono" value="#{personaBean.telefono}" cols="2" z:placeholder="Movil o Convencional" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Correo: </label>
+                                                <p:inputText class="form-control" id="correo" value="#{personaBean.correo}" cols="2" z:placeholder="ejemplo@gmail.com" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 pl-1">
+
+                                            <div class="form-group">
+                                                <p:commandButton class="btn btn-primary btn-block" value="Agregar Cliente" action="#{personaBean.agregarPersona}" update="crearUsuario" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </h:form>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-3 px-1">
-                      <div class="form-group">
-                        <label>Nombre:</label>
-                        <p:inputText id="nombre" class="form-control" value="#{personaBean.nombre}" cols="2"  z:placeholder="Nombre"/>
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Apellido:</label>
-                        <p:inputText class="form-control"  id="apellido" value="#{personaBean.apellido}" cols="2" z:placeholder="Apellido"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>Cedula: </label>
-                        <p:inputText class="form-control" id="cedula" value="#{personaBean.cedula}" cols="2" z:placeholder="Cedula"/>
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                        <label>Direccion:</label>
-                        <p:inputText class="form-control" id="direccion" value="#{personaBean.direccion}" cols="2" z:placeholder="Ej. Paute- Abdon Calderon y bahia San jose"/>
-                        
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>Telefono:</label>
-                        <p:inputText  class="form-control" id="telefono" value="#{personaBean.telefono}" cols="2" z:placeholder="Movil o Convencional"/>
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="form-group">
-                        <label>Correo: </label>
-                        <p:inputText class="form-control" id="correo" value="#{personaBean.correo}" cols="2" z:placeholder="ejemplo@gmail.com"/>
-                      </div>
-                    </div>
-                    
-                    <div class="col-md-4 pl-1">
-                    
-                      <div class="form-group">
-                        <p:commandButton  class="btn btn-primary btn-block" value="Agregar Cliente" action="#{personaBean.agregarPersona}" update="crearUsuario"/>
-                      </div>
-                    </div>
-                  </div>
-                  
-                </h:form>
-                
-                
-                
-                
-                
-                
-                
-              </div>
-            </div>
-          </div>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          <div class="col-md-4">
-            <div class="card card-user">
-              <div class="image">
-                <img src="https://images8.alphacoders.com/970/thumb-1920-970019.png" alt="..."/>
-              </div>
-              <div class="card-body">
-                <div class="author">
-                  <a href="#">
-                    <img class="avatar border-gray" src="https://pbs.twimg.com/profile_images/1296615683929899008/P7tOIMBp_400x400.jpg" alt="..."/>
-                    <h5 class="title">El mismisimo Kirby Empresario</h5>
-                  </a>
-                </div>
-                <p class="description text-center">
-                  "En todos los trabajos debe haber un Kirby"
-                </p>
-              </div>
-              
-              <div class="button-container">
-                <button href="https://www.facebook.com/kirbys.cubby" class="btn btn-neutral btn-icon btn-round btn-lg">
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="https://images8.alphacoders.com/970/thumb-1920-970019.png" alt="..." />
+                            </div>
+                            <div class="card-body">
+                                <div class="author">
+                                    <a href="#">
+                                        <img class="avatar border-gray" src="https://pbs.twimg.com/profile_images/1296615683929899008/P7tOIMBp_400x400.jpg" alt="..." />
+                                        <h5 class="title">El mismisimo Kirby Empresario</h5>
+                                    </a>
+                                </div>
+                                <p class="description text-center">
+                                    "En todos los trabajos debe haber un Kirby"
+                                </p>
+                            </div>
+
+                            <div class="button-container">
+                                <button href="https://www.facebook.com/kirbys.cubby" class="btn btn-neutral btn-icon btn-round btn-lg">
                   <i class="fab fa-facebook-f"></i>
                 </button>
-                <button href="https://twitter.com/kirbyinformer" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                <button href="https://twitter.com/kirbyinformer" class="btn btn-neutral btn-icon btn-round btn-lg">
                   <i class="fab fa-twitter"></i>
                 </button>
-                <button href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIhPgLaabbFayQrAA0RV66jUCUMKKs6Wcraw&usqp;=CAU" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                <button href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIhPgLaabbFayQrAA0RV66jUCUMKKs6Wcraw&usqp;=CAU" class="btn btn-neutral btn-icon btn-round btn-lg">
                   <i class="fab fa-google-plus-g"></i>
                 </button>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
             </div>
-          </div>
-        
-        
-        
-        
-        
-        
-        </div>
-      </div>
-      
+
         </div>
     </div>
 
     <!--   Core JS Files   -->
 
-	<script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/jquery.min.js"></script>
+    <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/jquery.min.js"></script>
     <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/popper.min.js"></script>
     <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/bootstrap.min.js"></script>
     <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

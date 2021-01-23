@@ -7,8 +7,6 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
-
-
 <h:head>
     <meta charset="utf-8" />
 	  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
@@ -96,13 +94,6 @@
 	        </ul>
         </h:form>
       </div>
-      
-      
-      
-      
-      
-      
-      
     </div>
     
     
@@ -110,7 +101,6 @@
     
     
     <div class="main-panel" id="main-panel">
-    
     
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -123,13 +113,6 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            
-            
-            
-            
-            
-            
-            
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -140,8 +123,7 @@
             
             
             <!-- Login -->
-                        <h:form>
-
+           <h:form>
               <div class="input-group no-border">
                 <h:inputText id="text" value="#{bodegaBean.usuario}"  class="form-control"  p:placeholder="Usuario"/>
                 <div class="input-group-append">
@@ -166,111 +148,66 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      
-      
-      
-      
-      
-      
-      
       <div class="panel-header panel-header-lg">
         <canvas id="bigDashboardChart"></canvas>
       </div>
-      
-      
-      
-      
+
       <!-- CONTENIDOOO -->
       <div class="content">
-      
       <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Inventario</h4>
               </div>
-              
-              
-              
               <!-- Busqueda de los productos -->
               <h:form  style="width : 80%; margin-left:10%;" >
+              	<div class="input-group no-border" >
               
               
-              <div class="input-group no-border" >
-              
-              
-            <h:selectOneMenu value="#{bodegaBean.categoria}">
-				<f:selectItems value="#{bodegaBean.categoriaList}" />
+            		<h:selectOneMenu value="#{bodegaBean.categoria}">
+					<f:selectItems value="#{bodegaBean.categoriaList}" />
 				
-				<f:ajax  listener="#{bodegaBean.listener}"  render="productos" />
+					<f:ajax  listener="#{bodegaBean.listener}"  render="productos" />
+					</h:selectOneMenu>
+            	<h:messages />
+              	<h:inputText id="text" value="#{bodegaBean.text}" type="text"  class="form-control" p:placeholder="Busqueda"/>
 
-			</h:selectOneMenu>
-			
-
-            
-            <h:messages />
-			
-			
-			
-			
-			
-			
-
-              <h:inputText id="text" value="#{bodegaBean.text}" type="text"  class="form-control" p:placeholder="Busqueda"/>
-
-              </div>
+              	</div>
               
             	<h:commandButton class="btn btn-primary btn-block" style="width : 40%; margin-left:60%;" value="Buscar por texto" action="#{bodegaBean.buscarTexto()}"/>
-              
-              
-              
-              
-              <div class="card-body">
-                <div class="table-responsive">
-                
-                
-
-                  
-                  
-                  
-                  <h:dataTable id="productos"  value="#{bodegaBean.listaArr}" var = "producto"
-					   styleClass = "table"
-					   headerClass = "employeeTableHeader"
-					   rowClasses = "employeeTableOddRow,employeeTableEvenRow">
-					   
-					   <h:column>    				
-					      <f:facet name = "header"> Producto</f:facet>    				
-					      #{producto.nombre}
-					   </h:column>
-					   
-					   <h:column>
-					      <f:facet name = "header">Precio Unitario</f:facet>
-					      #{producto.precio}
-					   </h:column>
-					   
-					   <h:column>
-					      <f:facet name = "header">Cantidad</f:facet>
-					      #{producto.stock}
-					   </h:column>
-					   
-					   <h:column>
-					      <f:facet name = "header">Categoria</f:facet>
-					      #{producto.categoria.nombre}
-					   </h:column>
-					</h:dataTable>
-                  
-                  
-                  
-                  
-                </div>
-              </div>
-              
+              	<div class="card-body">
+                	<div class="table-responsive">
+                  		<h:dataTable id="productos"  value="#{bodegaBean.listaArr}" var = "producto"
+						   styleClass = "table"
+						   headerClass = "employeeTableHeader"
+						   rowClasses = "employeeTableOddRow,employeeTableEvenRow">
+						   
+					   		<h:column>    				
+						      <f:facet name = "header"> Producto</f:facet>    				
+						      #{producto.nombre}
+						   </h:column>
+						   
+						   <h:column>
+						      <f:facet name = "header">Precio Unitario</f:facet>
+						      #{producto.precio}
+						   </h:column>
+						   
+						   <h:column>
+						      <f:facet name = "header">Cantidad</f:facet>
+						      #{producto.stock}
+						   </h:column>
+						   
+						   <h:column>
+						      <f:facet name = "header">Categoria</f:facet>
+						      #{producto.categoria.nombre}
+						   </h:column>
+						</h:dataTable>
+                	</div>
+              	</div>
               </h:form>
-            
             </div>
           </div>
         </div>
-      
-       
     </div>
   </div>
  
