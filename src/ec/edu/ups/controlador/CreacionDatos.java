@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,12 +12,16 @@ import javax.inject.Named;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.CiudadFacade;
+import ec.edu.ups.ejb.PedidoCabeceraFacade;
+import ec.edu.ups.ejb.PedidoDetalleFacade;
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.ProvinciaFacade;
 import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Categoria;
 import ec.edu.ups.entidades.Ciudad;
+import ec.edu.ups.entidades.PedidoCabecera;
+import ec.edu.ups.entidades.PedidoDetalle;
 import ec.edu.ups.entidades.Persona;
 import ec.edu.ups.entidades.Producto;
 import ec.edu.ups.entidades.Provincia;
@@ -40,6 +45,10 @@ public class CreacionDatos implements Serializable{
 	private CiudadFacade ejbCiudad;
 	@EJB
 	private PersonaFacade ejbPersona;
+	@EJB
+	private PedidoCabeceraFacade ejbPedidoCabecera;
+	@EJB
+	private PedidoDetalleFacade ejbPedidoDetalle;
 	
 	public void creacionPrincipal() {
 		
@@ -153,6 +162,12 @@ public class CreacionDatos implements Serializable{
 		ejbPersona.create(persona);
 		ejbPersona.create(persona2);
 		ejbPersona.create(persona3);
+		
+		PedidoCabecera pedCab = new PedidoCabecera(0, new Date(),(float) 400,(float) 500,(float) 0.12, "Enviado", persona3);
+		PedidoDetalle pedDetalle = new PedidoDetalle(0, 2, 400, pedCab, pord2);
+		
+		ejbPedidoCabecera.create(pedCab);
+		ejbPedidoDetalle.create(pedDetalle);
 	}
 	
 	public void listarProductosBodega() {

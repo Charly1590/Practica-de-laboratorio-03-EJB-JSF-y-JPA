@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:head>
 
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
@@ -21,6 +24,13 @@
     <link href="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 
 
+    <style type="text/css">
+    	#contenedorDetalles{
+			position: fixed;
+			width:52%;
+			margin-left: 62%;
+		}
+    </style>
 </h:head>
 
 <h:body>
@@ -40,7 +50,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
                             </div>
-                            <a class="navbar-brand" href="#Floro">Empleado</a>
+                            <a class="navbar-brand" href="#Floro">Empleado - Listar Facturas</a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -78,20 +88,127 @@
                         </div>
                     </div>
                 </nav>
-
             </h:form>
-
             <!-- End Navbar -->
             <div class="panel-header panel-header-sm">
-
             </div>
+			<div class="content">
+		<div id="contenedorIzquierda">	
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card  card-tasks">
+              <div class="card-header ">
+              </div>
+              <div class="card-body ">
+                <div class="table-full-width table-responsive">
+                <div id="filtros">
+	    	<h:form>
+		    	<h3>Buscar por cedula de cliente</h3>
+		    	<p:inputText class="form-control" id="ced" value="#{pedidosCabecera.cedula}" type="text"/>
+		    	<p:commandButton class=" btn-primary btn-block" value="Buscar" action="#{pedidosCabecera.filtrarFacturaCabecera}"  update="pedidoCabecera"/>
+		    	<P></P>
+		    </h:form>
+		    
+	    </div>
+	    
+	    <h:form id="pedidoCabecera">
+	    	<div id="contenedorCabeceras">
+	    		<p:dataTable value="#{pedidosCabecera.cabeceras}" var="cabP" 
+		    		styleClass="tabla" headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Codigo</f:facet>#{cabP.id}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Fecha</f:facet>#{cabP.fecha}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Cliente</f:facet>#{cabP.persona.getNombre()} #{cabP.persona.getApellido()}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Subtotal</f:facet>#{cabP.subtotal}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">IVA</f:facet>#{cabP.iva}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Total</f:facet>#{cabP.total}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Estado</f:facet>#{cabP.estado}
+		   			</p:column>
+			   		<p:column>
+		   				<f:facet name="header" id="proid">Detalle</f:facet>
+		   				<p:commandButton class="btn-primary" value="Ver" action="#{pedidosCabecera.sacarDetalles(cabP)}" update="pedidoDetalle">
+			    		</p:commandButton>
+		   			</p:column>
+					<p:column>
+						<f:facet name="header" id="proid">Cambiar Estado</f:facet>
+						<h:selectOneMenu value="#{pedidosCabecera.estado}">
+							<f:selectItem itemValue="Receptado" itemLabel="Receptado" />
+							<f:selectItem itemValue="En proceso" itemLabel="En proceso" />
+							<f:selectItem itemValue="En camino" itemLabel="En camino" />
+							<f:selectItem itemValue="Finalizado" itemLabel="Finalizado" />
+						</h:selectOneMenu>
+						<p:commandButton class="btn-primary" value="Aceptar" action="#{pedidosCabecera.cambiarEstado(cabP)}" update="pedidoCabecera"></p:commandButton>
+					</p:column>
+		   		</p:dataTable>
+	    	</div>
+	   	</h:form>
+                
+                
+                
+                </div>
+              </div>
+    
+            </div>
+          </div>
+          
+         <div id="contenedorDetalles"> 
+          <div class="col-md-6">
+            <div class="card">
+            
+              <div class="card-header">
+                <h4 class="card-title"> Detalles de la factura</h4>
+              </div>
+              <div class="card-body">
+              
+              
+              
+              <h:form id="pedidoDetalle">
+	   		<div>
+	   			<p:dataTable id="detalles" value="#{pedidosCabecera.detalles}" var="d" styleClass="tabla" 
+		   			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Producto</f:facet>#{d.producto.nombre}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Cantidad</f:facet>#{d.cantidad}
+		   			</p:column>
+		   			<p:column>
+		   				<f:facet name="header" id="proid">Total</f:facet>#{d.total}
+		   			</p:column>
+		   		</p:dataTable>
+	   		</div>
+	    </h:form>	
+               
+              
+              
+              </div>
+            </div>
+          </div>
+         </div> 
+        </div>
+        </div>
+      </div>
+
+
 
         </div>
     </div>
 
     <!--   Core JS Files   -->
 
-	<script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/jquery.min.js"></script>
+   	<script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/jquery.min.js"></script>
     <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/popper.min.js"></script>
     <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/core/bootstrap.min.js"></script>
     <script src="/Practica-de-laboratorio-03-EJB-JSF-y-JPA/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

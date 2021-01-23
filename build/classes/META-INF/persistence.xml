@@ -13,6 +13,8 @@
 		<class>ec.edu.ups.entidades.Persona</class>
 		<class>ec.edu.ups.entidades.FacturaCabecera</class>
 		<class>ec.edu.ups.entidades.FacturaDetalle</class>
+		<class>ec.edu.ups.entidades.PedidoCabecera</class>
+		<class>ec.edu.ups.entidades.PedidoDetalle</class>
 		
 		<properties>
             <property name="javax.persistence.schema-generation.database.action"

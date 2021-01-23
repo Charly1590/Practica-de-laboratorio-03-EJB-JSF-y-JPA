@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter({"/Empleado/PrincipalEmpleadoJSF.jsf","/Empleado/CrearFactura.jsf","/Empleado/CrearUsuario.jsf",
-			"/Empleado/ListarClientes.jsf","/Empleado/ListarFacturas.jsf","/Administrador/GestionarBodegas.jsf",
-			"/Administrador/InformeGeneral.jsf"})
+			"/Empleado/ListarClientes.jsf","/Empleado/ListarFacturas.jsf","/Empleado/ListarPedidos.jsf",
+			"/Administrador/GestionarBodegas.jsf","/Administrador/InformeGeneral.jsf"})
 public class AuthorizationFilter implements Filter {
 
 	public AuthorizationFilter() {
@@ -35,7 +35,7 @@ public class AuthorizationFilter implements Filter {
 			HttpSession ses = reqt.getSession(false);
 
 			String reqURI = reqt.getRequestURI();
-			if (ses.getAttribute("contador") != null)
+			if (ses.getAttribute("accesos") != null)
 				chain.doFilter(request, response);
 			else
 				resp.sendRedirect(reqt.getContextPath() + "/menupricp.jsf");

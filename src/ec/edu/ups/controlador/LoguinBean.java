@@ -12,12 +12,12 @@ public class LoguinBean implements Serializable{
 	
 	
 	public void login() {
-            FacesContext context = FacesContext.getCurrentInstance();
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("contador", 1);
+        FacesContext context = FacesContext.getCurrentInstance();
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("accesos", 1);
 	}
 	
 	public void logout() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("contador", null);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("accesos", null);
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
 }

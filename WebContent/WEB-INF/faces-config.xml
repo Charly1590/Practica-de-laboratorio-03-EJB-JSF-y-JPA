@@ -27,6 +27,10 @@
 			<from-outcome>salir</from-outcome>
 			<to-view-id>/menupricp.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>GestionarPedidos</from-outcome>
+			<to-view-id>/Empleado/ListarPedidos.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule> 
 	
 	<navigation-rule> 
@@ -46,6 +50,10 @@
 	   <navigation-case>
 			<from-outcome>salir</from-outcome>
 			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>GestionarPedidos</from-outcome>
+			<to-view-id>/Empleado/ListarPedidos.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule> 
 	
@@ -67,6 +75,10 @@
 			<from-outcome>salir</from-outcome>
 			<to-view-id>/menupricp.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>GestionarPedidos</from-outcome>
+			<to-view-id>/Empleado/ListarPedidos.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule> 
 	
 	<navigation-rule> 
@@ -86,6 +98,10 @@
 	   <navigation-case>
 			<from-outcome>salir</from-outcome>
 			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>GestionarPedidos</from-outcome>
+			<to-view-id>/Empleado/ListarPedidos.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule> 
 	
@@ -107,6 +123,34 @@
 			<from-outcome>salir</from-outcome>
 			<to-view-id>/menupricp.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>GestionarPedidos</from-outcome>
+			<to-view-id>/Empleado/ListarPedidos.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule> 
+	   <from-view-id>/Empleado/ListarPedidos.xhtml</from-view-id> 
+	   <navigation-case> 
+	      <from-outcome>crearFactura</from-outcome> 
+	      <to-view-id>/Empleado/CrearFactura.xhtml</to-view-id> 
+	   </navigation-case> 
+	   <navigation-case> 
+	      <from-outcome>listarFactura</from-outcome> 
+	      <to-view-id>/Empleado/ListarFacturas.xhtml</to-view-id> 
+	   </navigation-case>
+	   <navigation-case> 
+	      <from-outcome>crearCliente</from-outcome> 
+	      <to-view-id>/Empleado/CrearUsuario.xhtml</to-view-id> 
+	   </navigation-case>
+	   <navigation-case>
+			<from-outcome>salir</from-outcome>
+			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case> 
+	      <from-outcome>listarClientes</from-outcome> 
+	      <to-view-id>/Empleado/ListarClientes.xhtml</to-view-id> 
+	   </navigation-case>  
 	</navigation-rule>
 	
 	<navigation-rule>
