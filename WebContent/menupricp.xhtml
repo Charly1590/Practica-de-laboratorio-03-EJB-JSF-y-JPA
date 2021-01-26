@@ -25,14 +25,9 @@
 
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
             <div class="logo">
                 <h1 style="color:white;"> Pal Hogar </h1>
             </div>
-
-            <!-- Lista del menu -->
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <h:form>
                     <ul class="nav">
@@ -59,52 +54,28 @@
                     </ul>
                 </h:form>
             </div>
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
         <div class="main-panel" id="main-panel">
-
-
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <div class="navbar-toggle">
                             <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
+				                <span class="navbar-toggler-bar bar1"></span>
+				                <span class="navbar-toggler-bar bar2"></span>
+				                <span class="navbar-toggler-bar bar3"></span>
+			                </button>
                         </div>
-
-
-
-
-
-
-
                     </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+		            <span class="navbar-toggler-bar navbar-kebab"></span>
+		            <span class="navbar-toggler-bar navbar-kebab"></span>
+		            <span class="navbar-toggler-bar navbar-kebab"></span>
+          		</button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-
-
                         <!-- Login -->
                         <h:form>
-
                             <div class="input-group no-border">
                                 <h:inputText id="text" value="#{categoriaBean.usuario}" class="form-control" p:placeholder="Usuario" />
                                 <div class="input-group-append">
@@ -113,73 +84,44 @@
                                     </div>
                                 </div>
                             </div>
-                            <br />
+                      <br />
                             <div class="input-group no-border">
                                 <h:inputSecret id="contra" value="#{categoriaBean.contrasena}" type="password" class="form-control" p:placeholder="Contraseña" />
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="now-ui-icons objects_key-25"></i>
-                                    </div>
-                                </div>
+	                                <div class="input-group-append">
+	                                    <div class="input-group-text">
+	                                        <i class="now-ui-icons objects_key-25"></i>
+	                                    </div>
+	                                </div>
                             </div>
-                            <br />
-                            <h:commandButton class="btn btn-primary btn-block" value="Iniciar sesion" action="#{categoriaBean.iniciarSecion() }" />
-                        </h:form>
+                     	<br/>
+                     	<h:commandButton class="btn btn-primary btn-block" value="Iniciar sesion" action="#{categoriaBean.iniciarSecion() }" />
+              			</h:form>
                     </div>
                 </div>
             </nav>
-            
-            
             <!-- End Navbar -->
-
-
-
-
-
-
-
             <div class="panel-header panel-header-lg">
                 <canvas id="bigDashboardChart"></canvas>
             </div>
-
-
-
-
-
-
             <!-- CONTENIDOOO -->
             <div class="content">
-
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title"> Inventario</h4>
                         </div>
 
-
-
                         <!-- Busqueda de los productos -->
                         <h:form style="width : 80%; margin-left:10%;">
                             <div class="input-group no-border">
-
-
-
                                 <h:selectOneMenu value="#{categoriaBean.categoria}">
                                     <f:selectItems value="#{categoriaBean.categoriaList}" />
 
                                     <f:ajax listener="#{categoriaBean.listener}" render="productos" />
 
                                 </h:selectOneMenu>
-
-
-
                                 <h:messages />
                                 <h:inputText id="text" value="#{categoriaBean.text}" type="text" class="form-control" p:placeholder="Busqueda" />
-
-
-
-
-
                             </div>
                             <h:commandButton class="btn btn-primary btn-block" style="width : 40%; margin-left:60%;" value="Buscar por texto" action="#{categoriaBean.buscarTexto()}" />
                             <div class="card-body">
@@ -205,18 +147,11 @@
                                 </div>
                             </div>
                         </h:form>
-
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
-
-
 
 </h:body>
 

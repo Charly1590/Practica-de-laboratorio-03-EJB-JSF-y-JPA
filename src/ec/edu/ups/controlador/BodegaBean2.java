@@ -33,13 +33,16 @@ public class BodegaBean2 implements Serializable{
 	private CategoriaFacade ejbCategorias;
 	@EJB
 	private ProductoFacade ejbProducto;
+	
 	private List<Bodega> bodegas;
+	public static List<Producto> productosBodega;
 	private int bodegaActual;	
 	private String nombreProducto;
 	private float precioProducto;
 	private int stockProducto;
 	private char estadoProducto;
 	private String categoria;
+	private String nombre;
 	
 	
 	public BodegaBean2 () {
@@ -47,8 +50,17 @@ public class BodegaBean2 implements Serializable{
 	}
 	@PostConstruct
 	public void init(){
-		bodegas=ejbBodegas.findAll();		
+		bodegas=ejbBodegas.findAll();	
 	}
+	
+	public void filtrado() {
+		productosBodega=new ArrayList<Producto>();
+		productosBodega=ejbProducto.buscarPorNombre(nombre);
+		for(Producto p: productosBodega) {
+			System.out.println("pro: "+p.getNombre());
+		}
+	}
+	
 	public List<Bodega> getBodegas() {
 		return bodegas;
 	}
@@ -63,8 +75,13 @@ public class BodegaBean2 implements Serializable{
 				"Herramientas","Electrodomesticos","Licores"};
 		return lista;
 	}
+	
 	public List<Producto> getProductosBodega(){
 		return bodegas.get(bodegaActual).getProductos();
+	}
+	
+	public void setProductosBodega(List<Producto> productosBodega) {
+		this.productosBodega = productosBodega;
 	}
 	
 	public int getBodegaActual() {
@@ -73,6 +90,7 @@ public class BodegaBean2 implements Serializable{
 	public void setBodegaActual(int bodegaActual) {
 		this.bodegaActual = bodegaActual;
 	}
+	
 	public BodegaFacade getEjbBodegas() {
 		return ejbBodegas;
 	}
@@ -139,6 +157,7 @@ public class BodegaBean2 implements Serializable{
 		}		
 		return this.getCategoriasBodega().get(salida);
 	}
+	
 	public ArrayList<Producto> getTodos() {
 		ArrayList<Producto> stos = new ArrayList<Producto>();				
 		for (int i = 0; i < bodegas.size(); i++) {								
@@ -166,6 +185,14 @@ public class BodegaBean2 implements Serializable{
 			
 		}
 		return stos;
-				
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}	
+	
+	
+	
 }

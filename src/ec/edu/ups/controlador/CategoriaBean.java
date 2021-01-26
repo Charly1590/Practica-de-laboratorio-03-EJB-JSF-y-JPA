@@ -112,32 +112,20 @@ public class CategoriaBean implements Serializable {
 		//this.bntBusc = this.categoria.equals("Categorias");
 	
 	}
-
-	
 	public String getlista() {
 		return lista;
 	}
-
 	public void setlista(String productosT) {
 		this.lista = productosT;
 	}
-	
-	
 	public void listener() {
-		
 		System.out.println("Texto de busqueda: " + text);
         System.out.println("Seleccionada : " + categoria);
-        ArrayList<Producto> stosTemp = new ArrayList<Producto>();
-
-        
+        ArrayList<Producto> stosTemp = new ArrayList<Producto>();        
         if(categoria.equals("Todas")) {
-
     		for (Producto producto : listaArr) {
-    			
     			if (producto.getNombre().toLowerCase().contains(text.toLowerCase())) {
-   
     				stosTemp.add(producto);
-
     			}
     		}
     	}else {
@@ -147,12 +135,8 @@ public class CategoriaBean implements Serializable {
 		       		System.out.println("Prod Actual: "+listaArr.get(i).getNombre());
 		       		stosTemp.add(listaArr.get(i));
 		       		
-		       	 
 		       	 }
 			}
-	       	 
-			
-	        
     	}
         
         setListaArr(stosTemp);
@@ -163,53 +147,28 @@ public class CategoriaBean implements Serializable {
 	
 	
 	public void getTodos() {
-		
-		
 		ArrayList<Producto> sumados = new ArrayList<Producto>();
 		Boolean f = true;
 		List<Producto> stos =productos;
-
-
 		for (Producto producto : stos) {
-			
-				if (sumados.isEmpty() && producto.getEstado() == 'S') {
-					
-					sumados.add(producto);
-					
-				}else {
-					
-					for (Producto producto2 : sumados) {
-						
+				if (sumados.isEmpty() && producto.getEstado() == 'S') {					
+					sumados.add(producto);					
+				}else {				
+					for (Producto producto2 : sumados) {						
 						if (producto2.getNombre().equals(producto.getNombre()) && f ) {
-							producto2.setStock(producto2.getStock() + producto.getStock());
-							
-							
-							f = false;
-							
-						}
-						
-
+							producto2.setStock(producto2.getStock() + producto.getStock());													
+							f = false;					
+						}	
 					}
 					if (f && producto.getEstado() == 'S') {
 						sumados.add(producto);
 						f = true;
 					}
-					
 				}
-				
-				
 			}
 				System.out.println("Todos "+sumados);
 				setListaArr(sumados);
-				
-				
-				
 	}
-	
-	
-	
-	
-	
 	
 
 	public String getText() {
@@ -262,14 +221,17 @@ public class CategoriaBean implements Serializable {
 		
 		System.out.println("Usuario: " + usuario );
 		
-		System.out.println("Contraseña: " + contrasena );
+		System.out.println("Contraseï¿½a: " + contrasena );
 		
 		
 		Persona sta = ejbPersona.inicioSesion(usuario, contrasena);
+		LoguinBean loguinBean=new LoguinBean();
 		
 		if (sta != null && sta.getRol() == 'A') {
+			loguinBean.login();
 			return "inicioAdmin";
 		}else if (sta != null) {
+			loguinBean.login();
 			return "inicioUsuario";
 		}
 		
