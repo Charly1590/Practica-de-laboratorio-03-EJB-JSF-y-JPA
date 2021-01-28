@@ -37,7 +37,7 @@ public class PedidoCabeceraFacade extends AbstractFacade<PedidoCabecera>{
     
     public List<PedidoCabecera> pedidosCabeceraFiltrada(String cedula){
     	List<PedidoCabecera> cabeceras=new ArrayList<PedidoCabecera>();
-    	String consulta = "Select pC From PedidoCabecera pC pc.persona.cedula='"+cedula+"' order by pc.id desc";
+    	String consulta = "Select pc From PedidoCabecera pc where pc.persona.cedula='"+cedula+"' order by pc.id desc";
     	try {
     		cabeceras = em.createQuery(consulta).getResultList();
     	}catch(Exception e) {

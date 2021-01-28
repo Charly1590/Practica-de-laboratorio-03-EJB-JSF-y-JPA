@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -28,10 +29,19 @@ public class PedidoCabecera implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn
+	@JsonbTransient
 	private Persona persona;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoCabecera")
+	@JsonbTransient
 	private List<PedidoDetalle> pedidosDetale;
+
+	@Override
+	public String toString() {
+		return "PedidoCabecera [id=" + id + ", fecha=" + fecha + ", subtotal=" + subtotal + ", total=" + total
+				+ ", iva=" + iva + ", estado=" + estado + ", persona=" + persona + ", pedidosDetale=" + pedidosDetale
+				+ "]";
+	}
 
 	public PedidoCabecera() {
 		super();

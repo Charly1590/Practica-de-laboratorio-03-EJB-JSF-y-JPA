@@ -3,15 +3,18 @@ package ec.edu.ups.entidades;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
+
 
 /**
  * Entity implementation class for Entity: Producto
  *
  */
-@Entity
 
+
+
+@Entity
 public class Producto implements Serializable {
 
 	
@@ -21,18 +24,29 @@ public class Producto implements Serializable {
 	private int id;
 	private String nombre;
 	private float precio;
+	
 	private int stock;
 	private char estado;
 	@ManyToOne
 	@JoinColumn
+	@JsonbTransient
 	private Categoria categoria;
 	
 	@ManyToMany(mappedBy = "productos")
+	@JsonbTransient
 	private List<Bodega> bodegas;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
+	@JsonbTransient
     private List<FacturaDetalle> facturasDetallesList;
 	
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", estado="
+				+ estado + ", categoria=" + categoria + ", bodegas=" + bodegas + ", facturasDetallesList="
+				+ facturasDetallesList + "]";
+	}
+
 	public Producto(int id, String nombre, float precio, int stock, char estado, Categoria categoria) {
 		this.setId(id);
 		this.setNombre(nombre);
