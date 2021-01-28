@@ -51,7 +51,12 @@ public class PersonaBean implements Serializable{
     }
     
     public void agregarPersona() {
-    	if(nombre!=null && nombre.equals("")!=true) {
+    	persona = null;
+    	persona = ejbPersonaFacade.buscarPorCedula(this.getCedula());
+    	
+    	
+    	if(nombre!=null && nombre.equals("")!=true && persona==null ) {
+    		System.out.println("No se repite");
     		Persona persona2= new Persona(0, nombre, apellido, cedula, direccion, telefono, correo, password, 'C');
         	ejbPersonaFacade.create(persona2);
         	nombre="";

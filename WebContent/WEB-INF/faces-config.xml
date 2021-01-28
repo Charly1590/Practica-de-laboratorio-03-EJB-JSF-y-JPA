@@ -182,6 +182,11 @@
 			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>crearusu</from-outcome>
+			<to-view-id>/CreacionUsuario.xhtml</to-view-id>
+		</navigation-case>
+		
 		
 	</navigation-rule>
 	
@@ -216,6 +221,11 @@
 		</navigation-case>
 		
 		
+		<navigation-case>
+			<from-outcome>crearusu</from-outcome>
+			<to-view-id>/CreacionUsuario.xhtml</to-view-id>
+		</navigation-case>
+		
 	</navigation-rule>
 	
 	<navigation-rule>
@@ -248,11 +258,58 @@
 			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>crearusu</from-outcome>
+			<to-view-id>/CreacionUsuario.xhtml</to-view-id>
+		</navigation-case>
+		
 	</navigation-rule>
 	
 	<navigation-rule>
 	
 		<from-view-id>/menuBodega3.xhtml</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>menuPrincial</from-outcome>
+			<to-view-id>/menupricp.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega1</from-outcome>
+			<to-view-id>/menuBodega1.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega2</from-outcome>
+			<to-view-id>/menuBodega2.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>bodega3</from-outcome>
+			<to-view-id>/menuBodega3.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inicioAdmin</from-outcome>
+			<to-view-id>/Administrador/InformeGeneral.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inicioUsuario</from-outcome>
+			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>crearusu</from-outcome>
+			<to-view-id>/CreacionUsuario.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+	
+		<from-view-id>/CreacionUsuario.xhtml</from-view-id>
 		
 		<navigation-case>
 			<from-outcome>menuPrincial</from-outcome>
@@ -280,7 +337,13 @@
 			<to-view-id>/Empleado/PrincipalEmpleadoJSF.xhtml</to-view-id>
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>crearusu</from-outcome>
+			<to-view-id>/CreacionUsuario.xhtml</to-view-id>
+		</navigation-case>
+		
 	</navigation-rule>
+	
 	
 	<navigation-rule>
 	
