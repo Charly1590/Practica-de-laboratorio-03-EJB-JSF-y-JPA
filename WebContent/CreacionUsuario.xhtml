@@ -110,52 +110,7 @@ xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
                 <canvas id="bigDashboardChart"></canvas>
             </div>
             <!-- CONTENIDOOO -->
-            <div class="content">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title"> Inventario</h4>
-                        </div>
-
-                        <!-- Busqueda de los productos -->
-                        <h:form style="width : 80%; margin-left:10%;">
-                            <div class="input-group no-border">
-                                <h:selectOneMenu value="#{categoriaBean.categoria}">
-                                    <f:selectItems value="#{categoriaBean.categoriaList}" />
-
-                                    <f:ajax listener="#{categoriaBean.listener}" render="productos" />
-
-                                </h:selectOneMenu>
-                                <h:messages />
-                                <h:inputText id="text" value="#{categoriaBean.text}" type="text" class="form-control" p:placeholder="Busqueda" />
-                            </div>
-                            <h:commandButton class="btn btn-primary btn-block" style="width : 40%; margin-left:60%;" value="Buscar por texto" action="#{categoriaBean.buscarTexto()}" />
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <h:dataTable id="productos" value="#{categoriaBean.listaArr}" var="producto" styleClass="table" headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">
-                                        <h:column>
-                                            <f:facet name="header"> Producto</f:facet>
-                                            #{producto.nombre}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Precio Unitario</f:facet>
-                                            #{producto.precio}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Cantidad</f:facet>
-                                            #{producto.stock}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Categoria</f:facet>
-                                            #{producto.categoria.nombre}
-                                        </h:column>
-                                    </h:dataTable>
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 
