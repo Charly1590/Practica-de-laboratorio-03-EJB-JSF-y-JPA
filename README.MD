@@ -1,6 +1,6 @@
 
 Se pide desarrollar una aplicación JEE usando JSF, EJB y JPA. La aplicación WEB permite realizar la facturación de una distribuidora de productos para el hogar. La distribuidora cuenta con varios productos que se encuentran almacenados en diferentes bodegas ubicadas geográficamente a lo largo del país.
-El sistema estará divido en dos secciones, pública y privada: pruebas7
+El sistema estará divido en dos secciones, pública y privada: pruebas8
 
 Sección publica:
 
